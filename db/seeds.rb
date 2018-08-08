@@ -1,8 +1,4 @@
 require 'csv'
-require 'open-uri'
-require 'nokogiri'
-
-
 
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'hsn.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
@@ -15,7 +11,6 @@ csv.each do |row|
   t.gst = row['gst']
   html_doc.search('#ctl00_BodyContents_subheading_gridview_ctl02_SUBHEADING_DESCRIPTION').each do |element|
     t.description = element.text.strip
-    # puts element.attribute('href').value
   end
   t.save
   puts "#{t.hsn_chapter}, #{t.gst}, #{t.description} saved"
