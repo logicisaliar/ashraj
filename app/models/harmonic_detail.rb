@@ -1,0 +1,2 @@
+class HarmonicDetail < ApplicationRecord
+end
