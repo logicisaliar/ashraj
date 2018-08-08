@@ -1,0 +1,2 @@
+class HarmonicDetailsController < ApplicationController
+end
