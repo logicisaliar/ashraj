@@ -1,0 +1,8 @@
+<h1>Please add new sub-chapter</h1>
+
+<%= simple_form_for harmonic do |f| %>
+  <%= f.error_notification %>
+      <%= f.input :hsn_end, label: false, placeholder: "0000" %>
+      <%= f.input :harmonic_detail_id, label: false, placeholder: "3302", collection: @hsn_chapters %>
+  <p><%= f.submit %></p>
+<% end %>
