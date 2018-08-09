@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_08_115657) do
+ActiveRecord::Schema.define(version: 2018_08_09_092010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,14 @@ ActiveRecord::Schema.define(version: 2018_08_08_115657) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "harmonics", force: :cascade do |t|
+    t.integer "hsn_end"
+    t.bigint "harmonic_detail_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["harmonic_detail_id"], name: "index_harmonics_on_harmonic_detail_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -40,4 +48,5 @@ ActiveRecord::Schema.define(version: 2018_08_08_115657) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "harmonics", "harmonic_details"
 end

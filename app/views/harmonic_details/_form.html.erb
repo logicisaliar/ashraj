@@ -1,6 +1,6 @@
 <h1>Please add new HSN Chapter</h1>
 <%= simple_form_for harmonic_detail do |f| %>
   <%= f.input :hsn_chapter %>
-  <%= f.input :gst %>
+  <%= f.input :gst, collection: [0, 5, 12, 18, 28]  %>
   <%= f.button :submit %>
 <% end %>
