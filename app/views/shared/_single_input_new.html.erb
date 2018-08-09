@@ -1,0 +1,7 @@
+<h1>Please add new <%= instance.class.name %></h1>
+
+<%= simple_form_for instance do |f| %>
+  <%= f.error_notification %>
+      <%= f.input :name %>
+  <p><%= f.submit %></p>
+<% end %>
