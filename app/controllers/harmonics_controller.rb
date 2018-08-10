@@ -1,7 +1,8 @@
+require 'csv'
+
 class HarmonicsController < ApplicationController
 
   skip_before_action :authenticate_user!
-  before_action :set_harmonic, only: [:show, :edit, :update, :destroy]
 
   def new
     harmonic_details = HarmonicDetail.all
@@ -20,17 +21,26 @@ class HarmonicsController < ApplicationController
   end
 
   def index
-    @harmonics = Harmonic.all
+    filename = "harmonic"
+    csv_read(filename)
+    @harmonics = Harmonic.all.sort_by &:harmonic_detail_id
   end
 
   private
 
-  def set_harmonic
-    @harmonic = Harmonic.find(params[:id])
-  end
-
   def harmonic_params
     params.require(:harmonic).permit(:hsn_end, :harmonic_detail_id)
+  end
+
+    def csv_read(filename)
+    csv_text = File.read(Rails.root.join('lib', 'seeds', "#{filename}.csv"))
+    csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+    csv.each do |row|
+      t = Harmonic.new
+      t.harmonic_detail_id = row['harmonic_detail_id']
+      t.hsn_end = row['hsn_end']
+      t.save
+    end
   end
 
   def hsn_chapters_sorted(harmonic_details)

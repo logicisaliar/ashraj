@@ -1,34 +1,24 @@
 class CategoriesController < ApplicationController
 
   skip_before_action :authenticate_user!
-  before_action :set_category, only: [:show, :edit, :update, :destroy]
-
-  def new
-    @category = Category.new
-  end
-
-  def create
-    @category = Category.new(category_params)
-    if @category.save
-      redirect_to categories_path
-    else
-      render 'new'
-    end
-
-  end
 
   def index
+    filename = "category"
+    csv_read(filename)
     @categories = Category.all
   end
 
   private
 
-  def set_category
-    @category = category.find(params[:id])
+  def csv_read(filename)
+    csv_text = File.read(Rails.root.join('lib', 'seeds', "#{filename}.csv"))
+    csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+    csv.each do |row|
+      t = Category.new
+      t.name = row['name']
+      t.save
+    end
   end
 
-  def category_params
-    params.require(:category).permit(:name)
-  end
 
 end
