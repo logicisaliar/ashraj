@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
+  resources :types, only: [:index]
   resources :categories, only: [:index, :new, :create]
   resources :harmonic_details, only: [:index, :new, :create]
   resources :harmonics, only: [:index, :new, :create]
