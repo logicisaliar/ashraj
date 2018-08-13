@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_10_092009) do
+ActiveRecord::Schema.define(version: 2018_08_13_154344) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,11 @@ ActiveRecord::Schema.define(version: 2018_08_10_092009) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "categories_products", id: false, force: :cascade do |t|
+    t.bigint "category_id", null: false
+    t.bigint "product_id", null: false
   end
 
   create_table "harmonic_details", force: :cascade do |t|
@@ -35,6 +40,25 @@ ActiveRecord::Schema.define(version: 2018_08_10_092009) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["harmonic_detail_id"], name: "index_harmonics_on_harmonic_detail_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.float "discount"
+    t.text "description"
+    t.bigint "type_id"
+    t.float "mrp"
+    t.string "unit"
+    t.bigint "harmonic_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["harmonic_id"], name: "index_products_on_harmonic_id"
+    t.index ["type_id"], name: "index_products_on_type_id"
+  end
+
+  create_table "products_uses", id: false, force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.bigint "use_id", null: false
   end
 
   create_table "types", force: :cascade do |t|
@@ -67,4 +91,6 @@ ActiveRecord::Schema.define(version: 2018_08_10_092009) do
   end
 
   add_foreign_key "harmonics", "harmonic_details"
+  add_foreign_key "products", "harmonics"
+  add_foreign_key "products", "types"
 end

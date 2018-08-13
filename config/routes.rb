@@ -6,6 +6,6 @@ Rails.application.routes.draw do
   resources :categories, only: [:index, :new, :create]
   resources :harmonic_details, only: [:index, :new, :create]
   resources :harmonics, only: [:index, :new, :create]
-
+  resources :products
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
