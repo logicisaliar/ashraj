@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   skip_before_action :authenticate_user!
-  before_action :set_product
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def new
     @product = Product.new

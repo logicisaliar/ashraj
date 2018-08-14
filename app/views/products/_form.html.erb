@@ -1,0 +1,7 @@
+<h1>Please add new Product</h1>
+<%= simple_form_for product do |f| %>
+  <%= f.input :name %>
+  <%= f.input :type_id, collection: Type.all  %>
+  <%= f.input :harmonic_id, collection: Harmonic.all.each {:hsn} %>
+  <%= f.button :submit %>
+<% end %>
