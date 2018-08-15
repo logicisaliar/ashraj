@@ -3,6 +3,11 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def new
+    @hsns = []
+    Harmonic.all.each do |h|
+      @hsns << "#{h.harmonic_detail.hsn_chapter}#{h.hsn_end}"
+    end
+    @hsns.sort!
     @product = Product.new
   end
 

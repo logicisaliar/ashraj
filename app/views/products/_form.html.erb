@@ -2,6 +2,8 @@
 <%= simple_form_for product do |f| %>
   <%= f.input :name %>
   <%= f.input :type_id, collection: Type.all  %>
-  <%= f.input :harmonic_id, collection: Harmonic.all.each {:hsn} %>
+  <%= f.input :harmonic_id, collection: hsns %>
   <%= f.button :submit %>
 <% end %>
+
+<%= link_to "Go back", root_path %>
