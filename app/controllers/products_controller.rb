@@ -3,11 +3,6 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def new
-    @hsns = []
-    Harmonic.all.each do |h|
-      @hsns << "#{h.harmonic_detail.hsn_chapter}#{h.hsn_end}"
-    end
-    @hsns.sort!
     @product = Product.new
   end
 
@@ -16,6 +11,7 @@ class ProductsController < ApplicationController
     if @product.save
       redirect_to products_path
     else
+      raise
       render :new
     end
   end
@@ -47,10 +43,12 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:type_id, :discount, :mrp, :unit, :harmonic_id, :description)
+    params.require(:product).permit(:type_id, :discount, :mrp, :unit, :harmonic_id, :description, :name)
   end
 
   def set_product
     @product = Product.find(params[:product_id])
   end
+
+
 end
