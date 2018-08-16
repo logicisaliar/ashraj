@@ -4,6 +4,7 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    @harmonics = harmonic_return(Harmonic.all).to_s
   end
 
   def create
@@ -11,7 +12,6 @@ class ProductsController < ApplicationController
     if @product.save
       redirect_to products_path
     else
-      raise
       render :new
     end
   end
@@ -50,5 +50,12 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:product_id])
   end
 
+  def harmonic_return(harmonic_details)
+    @hsns = []
+    harmonic_details.each do |h|
+      @hsns << "#{h.harmonic_detail.hsn_chapter}#{h.hsn_end}"
+    end
+    @hsns.sort!
+  end
 
 end
