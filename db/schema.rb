@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_13_154344) do
+ActiveRecord::Schema.define(version: 2018_08_17_124304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,22 +24,14 @@ ActiveRecord::Schema.define(version: 2018_08_13_154344) do
   create_table "categories_products", id: false, force: :cascade do |t|
     t.bigint "category_id", null: false
     t.bigint "product_id", null: false
-  end
-
-  create_table "harmonic_details", force: :cascade do |t|
-    t.integer "hsn_chapter"
-    t.float "gst"
-    t.string "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["category_id", "product_id"], name: "index_categories_products_on_category_id_and_product_id"
   end
 
   create_table "harmonics", force: :cascade do |t|
-    t.integer "hsn_end"
-    t.bigint "harmonic_detail_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["harmonic_detail_id"], name: "index_harmonics_on_harmonic_detail_id"
+    t.integer "hsn"
+    t.text "description"
   end
 
   create_table "products", force: :cascade do |t|
@@ -52,6 +44,7 @@ ActiveRecord::Schema.define(version: 2018_08_13_154344) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "gst"
     t.index ["harmonic_id"], name: "index_products_on_harmonic_id"
     t.index ["type_id"], name: "index_products_on_type_id"
   end
@@ -59,6 +52,7 @@ ActiveRecord::Schema.define(version: 2018_08_13_154344) do
   create_table "products_uses", id: false, force: :cascade do |t|
     t.bigint "product_id", null: false
     t.bigint "use_id", null: false
+    t.index ["product_id", "use_id"], name: "index_products_uses_on_product_id_and_use_id"
   end
 
   create_table "types", force: :cascade do |t|
@@ -90,7 +84,6 @@ ActiveRecord::Schema.define(version: 2018_08_13_154344) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "harmonics", "harmonic_details"
   add_foreign_key "products", "harmonics"
   add_foreign_key "products", "types"
 end
