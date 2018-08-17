@@ -1,8 +1,7 @@
-<h1>Please add new sub-chapter</h1>
+<h1>Please add new HS Code</h1>
 
 <%= simple_form_for harmonic do |f| %>
   <%= f.error_notification %>
-      <%= f.input :hsn_end, label: false, placeholder: "0000" %>
-      <%= f.input :harmonic_detail_id, label: false, placeholder: "3302", collection: @hsn_chapters %>
+      <%= f.input :hsn, label: false, placeholder: "33021010" %>
   <p><%= f.submit %></p>
 <% end %>

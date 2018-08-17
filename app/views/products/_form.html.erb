@@ -3,8 +3,9 @@
 <%= f.error_notification %>
   <%= f.input :name %>
   <%= f.input :type_id, collection: Type.all  %>
-  <%= f.input :harmonic_id, collection: Harmonic.all %>
+  <%= f.input :harmonic_id, collection: @harmonics, label_method: :second, value_method: :first %>
   <%= f.input :discount, input_html: {value: f.object.discount || 50} %>
+  <%= f.input :gst, placeholder: "18%", collection: [0,5,12,18,28] %>
   <%= f.input :description %>
   <%= f.input :mrp, label: "MRP" %>
   <%= f.input :unit, collection: ["Ltr", "Kg", "Units"] %>

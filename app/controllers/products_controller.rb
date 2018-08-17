@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
-    @harmonics = harmonic_return(Harmonic.all)
+    @harmonics = product_hsn
   end
 
   def create
@@ -43,19 +43,20 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:type_id, :discount, :mrp, :unit, :harmonic_id, :description, :name)
+    params.require(:product).permit(:type_id, :gst, :discount, :mrp, :unit, :harmonic_id, :description, :name)
   end
 
   def set_product
     @product = Product.find(params[:product_id])
   end
 
-  def harmonic_return(harmonic_details)
-    @hsns = []
-    harmonic_details.each do |h|
-      @hsns << ["#{h.harmonic_detail.hsn_chapter}#{h.hsn_end}", h]
+  def product_hsn
+    hsns = []
+    count = 1
+    Harmonic.count.times do
+      hsns << [Harmonic.find(count).id, Harmonic.find(count).hsn]
+      count += 1
     end
-    @hsns.sort!
+    hsns
   end
-
 end
