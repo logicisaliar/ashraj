@@ -1,7 +1,8 @@
+
 <h1>HSN codes</h1>
 <% @harmonics.each do |h| %>
-<%= h.harmonic_detail.hsn_chapter %><%= h.hsn_end %> -
-<%= h.harmonic_detail.gst %>%
+<%= h.hsn %> - <%= h.description %>
+<br><br>
 <% end %>
 
 <%= link_to "Go back", root_path %>

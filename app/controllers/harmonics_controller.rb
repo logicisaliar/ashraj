@@ -5,13 +5,13 @@ class HarmonicsController < ApplicationController
   skip_before_action :authenticate_user!
 
   def new
-    harmonic_details = HarmonicDetail.all
-    @hsn_chapters = hsn_chapters_sorted(harmonic_details)
     @harmonic = Harmonic.new
   end
 
   def create
     @harmonic = Harmonic.new(harmonic_params)
+    @harmonic.hsn = hsn_eight_digit(@harmonic.hsn)
+    # @harmonic.description = hsn_scrapper(@harmonic)
     if @harmonic.save
       redirect_to harmonics_path
     else
@@ -23,13 +23,16 @@ class HarmonicsController < ApplicationController
   def index
     filename = "harmonic"
     csv_read(filename)
-    @harmonics = Harmonic.all.sort_by &:harmonic_detail_id
+    @harmonics = Harmonic.all.sort_by &:hsn
+    # @harmonics.each do |h|
+    #   hsn_scrapper(h)
+    # end
   end
 
   private
 
   def harmonic_params
-    params.require(:harmonic).permit(:hsn_end, :harmonic_detail_id)
+    params.require(:harmonic).permit(:hsn)
   end
 
     def csv_read(filename)
@@ -37,23 +40,32 @@ class HarmonicsController < ApplicationController
     csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
     csv.each do |row|
       t = Harmonic.new
-      t.harmonic_detail_id = row['harmonic_detail_id']
-      t.hsn_end = row['hsn_end']
+      t.hsn = row['hsn']
       t.save
     end
   end
 
-  def harmonic_return(h)
-    @hsns = []
-    @hsns << "#{h.harmonic_detail.hsn_chapter}#{h.hsn_end}"
-    @hsns.sort!
+  def hsn_scrapper(h)
+    url = "http://www.cybex.in/HS-Codes/hs-#{h.hsn/10000}.aspx"
+    html_file = open(url).read
+    html_doc = Nokogiri::HTML(html_file)
+    html_doc.search('#ctl00_BodyContents_subheading_gridview_ctl02_SUBHEADING_DESCRIPTION').each do |element|
+      h.description = element.text.strip
+    end
   end
 
-  def hsn_chapters_sorted(harmonic_details)
-    hsn_chapters = []
-    harmonic_details.each do |h|
-      hsn_chapters << h.hsn_chapter
+  def hsn_eight_digit(h)
+    if h/10000 == 0
+      h = h * 10000
+    elsif h/100 == 0
+      h = h * 100
     end
-    return hsn_chapters.sort!
+    return h
   end
+  # def harmonic_return(h)
+  #   @hsns = []
+  #   @hsns << "#{h.harmonic_detail.hsn_chapter}#{h.hsn_end}"
+  #   @hsns.sort!
+  # end
+
 end
