@@ -1,0 +1,16 @@
+<h1>Please add new Product</h1>
+<%= simple_form_for product do |f| %>
+<%= f.error_notification %>
+  <%= f.input :name %>
+  <%= f.input :type_id, collection: Type.all  %>
+  <%= f.input :harmonic_id, collection: Harmonic.all %>
+  <%= f.input :discount, input_html: {value: f.object.discount || 50} %>
+  <%= f.input :description %>
+  <%= f.input :mrp, label: "MRP" %>
+  <%= f.input :unit, collection: ["Ltr", "Kg", "Units"] %>
+  <%= f.association :use, label: "Applications", as: :check_boxes %>
+  <%= f.association :category, as: :check_boxes %>
+  <%= f.button :submit %>
+<% end %>
+
+<%= link_to "Go back", root_path %>

@@ -1,14 +1,15 @@
 class ProductsController < ApplicationController
   skip_before_action :authenticate_user!
-  before_action :set_product
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def new
     @product = Product.new
+    @harmonics = harmonic_return(Harmonic.all)
   end
 
   def create
     @product = Product.new(product_params)
-    if @product.save
+    if @product.save!
       redirect_to products_path
     else
       render :new
@@ -42,10 +43,19 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:type_id, :discount, :mrp, :unit, :harmonic_id, :description)
+    params.require(:product).permit(:type_id, :discount, :mrp, :unit, :harmonic_id, :description, :name)
   end
 
   def set_product
     @product = Product.find(params[:product_id])
   end
+
+  def harmonic_return(harmonic_details)
+    @hsns = []
+    harmonic_details.each do |h|
+      @hsns << ["#{h.harmonic_detail.hsn_chapter}#{h.hsn_end}", h]
+    end
+    @hsns.sort!
+  end
+
 end

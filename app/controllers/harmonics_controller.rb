@@ -43,6 +43,12 @@ class HarmonicsController < ApplicationController
     end
   end
 
+  def harmonic_return(h)
+    @hsns = []
+    @hsns << "#{h.harmonic_detail.hsn_chapter}#{h.hsn_end}"
+    @hsns.sort!
+  end
+
   def hsn_chapters_sorted(harmonic_details)
     hsn_chapters = []
     harmonic_details.each do |h|
