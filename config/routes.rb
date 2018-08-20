@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'packings/index'
   devise_for :users
   root to: 'pages#home'
   resources :types, only: [:index]
@@ -8,5 +7,7 @@ Rails.application.routes.draw do
   resources :categories, only: [:index, :new, :create]
   resources :harmonics, only: [:index, :new, :create]
   resources :products
+  resources :items
+  post 'product_discount' => "products#discount", as: :product_discount
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
