@@ -1,0 +1,8 @@
+<h1>Packings:</h1>
+<% @packings.each do |p| %>
+  <%= p.pack_size %>
+  <%= p.rebate %>
+  <%= p.sample ? "Sample" : "Sale" %>
+<% end %>
+
+<%= link_to "Go back", root_path %>
