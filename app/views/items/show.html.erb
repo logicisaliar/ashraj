@@ -1,0 +1,7 @@
+<%= @item.product.name %>
+<%= @item.packing.pack_size %>
+<%= @item.quantity %>
+<%= @item.discount %>
+<%= @item.product.gst %>
+<%= link_to "Edit", edit_item_path(@item) %>
+<%= link_to "Delete", item_path(@item), method: :delete %>

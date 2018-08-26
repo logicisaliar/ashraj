@@ -1,10 +1,11 @@
 <h1>Please add new Item</h1>
 <%= simple_form_for item do |f| %>
 <%= f.error_notification %>
-  <%= f.input :product_id, collection: @products, label_method: :second, value_method: :first  %>
-  <%= f.input :discount, input_html: {value: f.object.discount || item.product.discount} %>
-  <%= f.input :packing_id, collection: @packings, label_method: :second, value_method: :first  %>
-  <%= f.button :submit %>
+<%= f.input :product_id, collection: @products, label_method: :second, value_method: :first  %>
+<%= f.input :packing_id, collection: @packings, label_method: :second, value_method: :first  %>
+<%= f.input :quantity %>
+<%= f.button :submit %>
 <% end %>
-
+<br>
 <%= link_to "Go back", root_path %>
+<%#= f.text_field :discount, id: "item-id" %>

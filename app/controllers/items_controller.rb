@@ -1,17 +1,44 @@
 require 'csv'
 class ItemsController < ApplicationController
   skip_before_action :authenticate_user!
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   def new
-    @products = item_prod
+    @products = class_label(Product.all)
+    @packings = packing_label(Packing.all)
     @item = Item.new
   end
 
+  def create
+    @item = Item.new(item_params)
+    if @item.save!
+      redirect_to items_path
+    else
+      render :new
+      # calculate amount and quanity
+    end
+  end
+
   def index
+    @items = Item.all
+  end
+
+  def show
   end
 
   def edit
+    @products = class_label(Product.all)
+    @packings = packing_label(Packing.all)
+  end
+
+  def update
+    @item.update(item_params)
+    redirect_to items_path
+  end
+
+  def destroy
+    @item.destroy
+    redirect_to items_path
   end
 
   private
@@ -26,42 +53,32 @@ class ItemsController < ApplicationController
     end
   end
 
-  def item_prod
-    prods = []
-    count = 1
-    Product.count.times do
-      prods << [Product.find(count).id, Product.find(count).name]
-      count += 1
+  def class_label(cls)
+    return_array = []
+    cls.each do |p|
+      return_array << [p.id, p.name]
     end
-    prods
+    return_array
   end
 
-  def item_pack
-    packs = []
-    count = 1
-    Packing.count.times do
-      packs << [Packing.find(count).id, Packing.find(count).pack_size]
-      count += 1
+  def packing_label(cls)
+    return_array = []
+    cls.each do |p|
+      if p.sample
+        a = "#{p.pack_size} (Sample)"
+      else a = p.pack_size
+      end
+        return_array << [p.id, a]
     end
-    packs
+    return_array
   end
 
   def item_params
-    params.require(:item).permit(:product_id, :discount, :packing_id, :amount, :price)
-  end
-
-  def product_disc
-    if params[:product_id]
-      @discount = Product.find(params[:product_id]).discount
-    end
-
-    respond_with(@discount) do |format|
-      format.json { render :json => @discount.to_json }
-    end
+    params.require(:item).permit(:product_id, :packing_id, :quantity, :discount)
   end
 
   def set_item
-    @item = Item.find(params[:item_id])
+    @item = Item.find(params[:id])
   end
 
 end
