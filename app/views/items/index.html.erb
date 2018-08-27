@@ -1,0 +1,8 @@
+<% @items.each do |i| %>
+<%= link_to i.product.name, item_path(i) %>
+<%= i.packing.pack_size %>
+<%= i.quantity %>
+<%= link_to "Edit", edit_item_path(i) %>
+<%= link_to "Delete", item_path(i), method: :delete %>
+<br>
+<% end %>
