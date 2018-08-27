@@ -4,4 +4,5 @@ class Product < ApplicationRecord
   has_many :items
   belongs_to :type
   belongs_to :harmonic
+  validates :name, uniqueness: true
 end
