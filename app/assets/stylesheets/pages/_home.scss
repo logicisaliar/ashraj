@@ -37,14 +37,20 @@
 
 .about-box {
   h4 {
-    color: $red;
+    color: black;
     font-style: italic;
   }
   h5 {
     font-size: 15px;
   }
-  background-color: $white;
-  box-shadow: black 1px 1px;
-  padding: 10px;
-  border: 0.5px solid black;
+  background-color: rgba(225,225,225,0.3);
+  box-shadow: gray 1px 1px 10px;
+  padding: 20px;
+  border: 0.5px solid rgb(225,225,225);
+  border-radius: 3px;
+}
+
+.about {
+  justify-content: center;
+  align-item: top;
 }

@@ -16,6 +16,8 @@ gem 'sass-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
+gem 'materialize-sass', '~> 1.0.0.rc2'
+gem 'material_icons'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
