@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
+  get 'development', to: 'pages#development'
   resources :types, only: [:index]
   resources :packings, only: [:index]
   resources :uses, only: [:index]

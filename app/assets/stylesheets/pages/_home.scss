@@ -2,7 +2,7 @@
 .banner {
   color: white;
   text-align: center;
-  height: 100vh;
+  height: calc(100vh - 70px);
   /* if you have a 70px navbar => height: calc(100vh - 70px); */
   background-size: cover !important;
   display: flex;
@@ -22,6 +22,29 @@
   margin-bottom: 30px;
 }
 
-.top-margin-inverse {
-  margin-top: -50px;
+.home-contact {
+  box-shadow: black 1px 1px 10px;
+  background-color: #F4F4F4;
+
+  h3 {
+    color: $red;
+  }
+
+  p {
+    font-size: 12px;
+  }
+}
+
+.about-box {
+  h4 {
+    color: $red;
+    font-style: italic;
+  }
+  h5 {
+    font-size: 15px;
+  }
+  background-color: $white;
+  box-shadow: black 1px 1px;
+  padding: 10px;
+  border: 0.5px solid black;
 }
