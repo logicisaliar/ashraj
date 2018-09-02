@@ -14,6 +14,13 @@
 @import "components/index";
 @import "pages/index";
 
+// Material Design
+@import "materialize";
+
 .top-margin {
-  margin-top: 50px;
+  margin-top: 35px;
+}
+
+.bottom-margin {
+  margin-bottom: 35px;
 }
