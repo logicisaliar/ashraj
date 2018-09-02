@@ -1,5 +1,30 @@
-<h1>Products</h1>
-<% @products.each do |p| %>
-<%= p.name %>
-<% end %>
-<%= link_to "Go back", root_path %>
+<div class="container">
+  <h1>Products</h1>
+  <br>
+  <table class="highlight table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Item Name</th>
+        <th>Item Price</th>
+        <th>Item HSN</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @products.each do |p| %>
+      <tr>
+        <td><%= p.name %></td>
+        <% price = p.mrp %>
+        <% if p.mrp == 0 %>
+        <% price = "N/A" %>
+        <% end %>
+        <td><%= price %></td>
+        <td><%= p.harmonic.hsn %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="btn-prod-index">
+    <%= link_to '<i class="fas fa-home"></i> back to home'.html_safe, root_path, class: "btn" %>
+  </div>
+</div>
+
