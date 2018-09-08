@@ -1,0 +1,9 @@
+<h1>City</h1>
+<%= simple_form_for city do |f| %>
+<%= f.error_notification %>
+  <%= f.input :name %>
+  <%= f.input :state_id, collection: @states, label_method: :second, value_method: :first %>
+  <%= f.button :submit %>
+<% end %>
+
+<%= link_to "Go back", root_path %>
