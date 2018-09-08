@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'cities/index'
-  get 'states/index'
   devise_for :users
   root to: 'pages#home'
   get 'development', to: 'pages#development'
@@ -9,6 +7,7 @@ Rails.application.routes.draw do
   resources :packings, only: [:index]
   resources :uses, only: [:index]
   resources :categories, only: [:index, :new, :create]
+  resources :cities, only: [:index, :new, :create]
   resources :harmonics, only: [:index, :new, :create]
   resources :products
   resources :items

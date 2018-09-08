@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_02_183720) do
+ActiveRecord::Schema.define(version: 2018_09_08_092106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(version: 2018_09_02_183720) do
     t.bigint "category_id", null: false
     t.bigint "product_id", null: false
     t.index ["category_id", "product_id"], name: "index_categories_products_on_category_id_and_product_id"
+  end
+
+  create_table "cities", force: :cascade do |t|
+    t.string "name"
+    t.bigint "state_id"
+    t.float "lat"
+    t.float "lng"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["state_id"], name: "index_cities_on_state_id"
   end
 
   create_table "harmonics", force: :cascade do |t|
@@ -112,6 +122,7 @@ ActiveRecord::Schema.define(version: 2018_09_02_183720) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "cities", "states"
   add_foreign_key "items", "packings"
   add_foreign_key "items", "products"
   add_foreign_key "products", "harmonics"
