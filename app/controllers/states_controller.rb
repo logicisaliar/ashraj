@@ -1,11 +1,10 @@
-class TypesController < ApplicationController
+class StatesController < ApplicationController
   skip_before_action :authenticate_user!
 
-
   def index
-    filename = "type"
+    filename = "state"
     csv_read(filename)
-    @types = Type.all
+    @states = State.all
   end
 
   private
@@ -14,10 +13,12 @@ class TypesController < ApplicationController
     csv_text = File.read(Rails.root.join('lib', 'seeds', "#{filename}.csv"))
     csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
     csv.each do |row|
-      t = Type.new
+      t = State.new
       t.name = row['name']
+      t.code = row['code']
       t.save
     end
   end
+
 
 end
