@@ -1,0 +1,9 @@
+<h1>Pincode</h1>
+<%= simple_form_for pincode do |f| %>
+<%= f.error_notification %>
+  <%= f.input :pin %>
+  <%= f.input :city_id, collection: City.all %>
+  <%= f.button :submit %>
+<% end %>
+
+<%= link_to "Go back", root_path %>
