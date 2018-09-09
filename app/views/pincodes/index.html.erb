@@ -1,0 +1,9 @@
+<h1>Pincodes</h1>
+<% @pincodes.each do |p| %>
+<%= p.pin %>
+<%= p.city.name %>
+<%= p.state.name %>
+<br>
+<% end %>
+
+<%= link_to "Go back", root_path %>

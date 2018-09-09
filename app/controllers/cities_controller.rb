@@ -1,7 +1,7 @@
 class CitiesController < ApplicationController
 
   skip_before_action :authenticate_user!
-  before_action :set_city, only: [:update]
+  before_action :set_city, only: [:edit, :update]
 
 
   def new
@@ -9,8 +9,22 @@ class CitiesController < ApplicationController
     @city = City.new
   end
 
+  def create
+    @city = City.new(city_params)
+    if @city.save!
+      redirect_to cities_path
+    else
+      render :new
+    end
+  end
+
   def edit
     @states = class_label(State.all)
+  end
+
+  def update
+    @city.update(city_params)
+    redirect_to cities_path
   end
 
   def index
@@ -42,7 +56,7 @@ class CitiesController < ApplicationController
     csv_text = File.read(Rails.root.join('lib', 'seeds', "#{filename}.csv"))
     csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
     csv.each do |row|
-      t = State.new
+      t = City.new
       t.name = row['name']
       t.state_id = row['state_id']
       t.save
