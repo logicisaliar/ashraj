@@ -1,6 +1,6 @@
 require "application_system_test_case"
 
-class ProductsTest < ApplicationSystemTestCase
+class ItemsTest < ApplicationSystemTestCase
   test "items - index" do
     visit "/items"
     assert_selector "h1", text: "Items"
