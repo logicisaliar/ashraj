@@ -1,2 +1,7 @@
-<h1>Addresses#index</h1>
-<p>Find me in app/views/addresses/index.html.erb</p>
+<% @addresses.each do |a| %>
+<%= a.company.name %>
+<%= a.street %>
+<br>
+<% end %>
+
+<%= link_to "Go back", root_path %>

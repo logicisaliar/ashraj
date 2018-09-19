@@ -3,7 +3,7 @@ class CreateCompanies < ActiveRecord::Migration[5.2]
     create_table :companies do |t|
       t.string :name
       t.integer :kind
-      t.integer :parent_id
+      t.integer :parent_id, optional: true
       t.text :pan_number
       t.text :gst_end
       t.float :days

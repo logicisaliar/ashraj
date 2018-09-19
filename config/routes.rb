@@ -1,13 +1,4 @@
 Rails.application.routes.draw do
-  get 'addresses/new'
-  get 'addresses/edit'
-  get 'addresses/index'
-  get 'addresses/show'
-  get 'companies/new'
-  get 'companies/edit'
-  get 'companies/index'
-  get 'companies/show'
-  get 'companies/destroy'
   devise_for :users
   root to: 'pages#home'
   get 'development', to: 'pages#development'
@@ -21,5 +12,7 @@ Rails.application.routes.draw do
   resources :harmonics, only: [:index, :new, :create]
   resources :products
   resources :items
+  resources :addresses, only: [:index,:new, :create, :edit, :update, :show]
+  resources :companies
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
