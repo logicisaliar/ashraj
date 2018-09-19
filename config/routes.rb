@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  get 'addresses/new'
+  get 'addresses/edit'
+  get 'addresses/index'
+  get 'addresses/show'
+  get 'companies/new'
+  get 'companies/edit'
+  get 'companies/index'
+  get 'companies/show'
+  get 'companies/destroy'
   devise_for :users
   root to: 'pages#home'
   get 'development', to: 'pages#development'
