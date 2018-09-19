@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_08_110541) do
+ActiveRecord::Schema.define(version: 2018_09_19_123728) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.integer "kind"
+    t.string "street"
+    t.bigint "company_id"
+    t.bigint "pincode_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_addresses_on_company_id"
+    t.index ["pincode_id"], name: "index_addresses_on_pincode_id"
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -35,6 +46,21 @@ ActiveRecord::Schema.define(version: 2018_09_08_110541) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["state_id"], name: "index_cities_on_state_id"
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.integer "kind"
+    t.integer "parent_id"
+    t.text "pan_number"
+    t.text "gst_end"
+    t.float "days"
+    t.float "balance"
+    t.float "open_balance"
+    t.string "spl_instructions"
+    t.float "payment_score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "harmonics", force: :cascade do |t|
@@ -130,6 +156,8 @@ ActiveRecord::Schema.define(version: 2018_09_08_110541) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "addresses", "companies"
+  add_foreign_key "addresses", "pincodes"
   add_foreign_key "cities", "states"
   add_foreign_key "items", "packings"
   add_foreign_key "items", "products"

@@ -12,5 +12,7 @@ Rails.application.routes.draw do
   resources :harmonics, only: [:index, :new, :create]
   resources :products
   resources :items
+  resources :addresses, only: [:index,:new, :create, :edit, :update, :show]
+  resources :companies
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

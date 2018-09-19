@@ -25,8 +25,6 @@ class PincodesController < ApplicationController
   end
 
   def index
-    filename = "pincode"
-    csv_read(filename)
     @pincodes = Pincode.all
   end
 
@@ -49,20 +47,6 @@ class PincodesController < ApplicationController
   #   return_array
   # end
 
-    def csv_read(filename)
-    csv_text = File.read(Rails.root.join('lib', 'seeds', "#{filename}.csv"))
-    csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
-    count = 0
-    csv.each do |row|
-      t = Pincode.new
-      t.pin = row['pin']
-      t.city_id = row['city_id']
-      if (count > 100)
-      end
-      t.save
-      count += 1
-    end
-  end
 
 end
 

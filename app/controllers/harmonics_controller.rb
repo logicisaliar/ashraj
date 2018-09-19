@@ -21,8 +21,6 @@ class HarmonicsController < ApplicationController
   end
 
   def index
-    filename = "harmonic"
-    csv_read(filename)
     @harmonics = Harmonic.all.sort_by &:hsn
     # @harmonics.each do |h|
     #   hsn_scrapper(h)
@@ -33,16 +31,6 @@ class HarmonicsController < ApplicationController
 
   def harmonic_params
     params.require(:harmonic).permit(:hsn)
-  end
-
-    def csv_read(filename)
-    csv_text = File.read(Rails.root.join('lib', 'seeds', "#{filename}.csv"))
-    csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
-    csv.each do |row|
-      t = Harmonic.new
-      t.hsn = row['hsn']
-      t.save
-    end
   end
 
   def hsn_scrapper(h)

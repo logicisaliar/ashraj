@@ -1,0 +1,212 @@
+id,type,street,pincode_id,company_id
+1,1,"1035, Hubtown Solaris, Andheri (East)",98,1
+2,1,"D 58/20-B-1, Sigra-Mahmoorganj Road, Beside Sigra Petrol Pump, Sigra",17,2
+3,1,"20, Akhara Maan Khan",16,3
+4,1,"Near Vishav Vidhya Pith, Vadal",55,4
+5,1," B-9 Orien House, Behind Resham Bhawan, Lal Darwaja ",84,5
+6,1,"Opp. Talluka Shalla (Ramesh Bhai Chhayya Vidhayalay), Dr. Radha Krishna Marg, Sadar Bazar",54,6
+7,1,"Waghawadi Road, Sant Kanwarram Chowk, Opp. Raymond Showroom",59,7
+8,1,"F.42,Panch Ratna Complex,Near Modhere Chokdi,Highway,Mehsana",79,8
+9,1,"Green Park, Shop No. B - 6, Ground Floor, Sector 8, Plot No. 113-114, Taigor Road",61,9
+10,1,"Shop No. B-24, Basement, Fazal Tower Oppp. Dhanmora Complex, Adajan Patiya",85,10
+11,1,"G/A - 5, Royal Plaza Shopping Center, College Road, Khundh",87,11
+12,1,"32/B, Ahmedabad Complex, Behind Navjivan Hotel, S. G. Highway, Sarkhej",69,12
+13,1,"Near Shilpin Engineering, Saragvada Road, Sabalpur",56,13
+14,1,"Off Link Road, Andheri (West)",94,14
+15,1,"Plot No. 5156, Opp. Matangi Cooling Tower, Near GEB Sub Station, Karma Tur Chowkadi, G. I. D. C.",82,15
+16,1,Near Nishant Cinemas,3,16
+17,1,"Shop No. 22, 2nd Floor, Trikuta Shopping Complex, B C Road  Jammu Tawi",9,17
+18,1,"Karlyar Rainawari, Near V. B. College",10,18
+19,1,"21/2, Kanchagar Galli",169,19
+20,1,Itagi Maruti Galli,166,20
+21,1,"Near M L C Bank, Makan ghalli",171,21
+22,1,Dr. Iqbal Road,143,22
+23,1,"34, Karamveer Society, Opp. Taluka Police Station",118,23
+24,1,"960, Khanbhag Area, Kothawale Galli",127,24
+25,1,"Near Taksal Maruti Mandir & Vidhya Mandir School, Brahmanpuri",126,25
+26,1,"Shree Shangar Building, Lokhand Lane",115,26
+27,1,"Shop No.11, Kabadi Pura, Mahanagar Palika Complex",140,27
+28,1,"Plot No. 36, Road-4, Vishwakarma Nagar",147,28
+29,1,"146 - A, Chikhal House, Princess Street",89,29
+30,1,"Lal Mistry Masjid, Teli Khunt",116,30
+31,1,Aurangabad Road,142,31
+32,1,Behind Kashipur Bus Stand,24,32
+33,1,"C/O Milan Trading Co., Telipura Road, Behind Hasham Seth Library",149,33
+34,1,"Sharda Chowk, Indira Nagar, Mokshdham Gate",153,34
+35,1,"Budhijivi Colony, 70 Feet Road, Near Canara Bank, Dashratha, Anishabad",178,35
+36,1,"Shop No. 4, Gud Bazar, Near Jama Masjid",135,36
+37,1,Rainak Bazar,6,37
+38,1,"M - 148, M. I. D. C",138,38
+39,1,"Opp. Bhagwan Soda Flavour, Budhwari",150,39
+40,1,"375-377, Sadar Bazaar, Near SBI",19,40
+41,1,"20/6, Charan Singh Colony, Govind Nagar",13,41
+42,1,"62, Vishal Industrial Estate, Subash Nagar, Opp. Ceat Tyres, Bhandup (W)",100,42
+43,1,"Janta Road, Near Gas Agency",29,43
+44,1,"Jani Building, Near Saraspur Gurudwara, Opp. RPF Colony, Saraspur",63,44
+45,1,"P - 382, Shiv Nagar Damohnaka",159,45
+46,1,"Behind M. D. High School, Saijpur Bogha",72,46
+47,1,"12/A, Rachana Maninagar Co. Op. Hsg., Near Jaymala Bus Stop, Isanpur Road",74,47
+48,1,"Plot no. 415, Panch Sheel Nagar, Bhatena - 1",83,48
+49,1,"34, Lakhara Chowk, Dhanmandi",49,49
+50,1,"1/4, Arya Samaj Marg, Shivsagar Complex, Near Congress Karyalaya, Yogeshwar Tekdi",155,50
+51,1,"Rukmi Food Compound, Near Narmada Canal, Village Shekhpar, Muli",58,51
+52,1,Dalda Factory Compound,115,52
+53,1,"76/2, Main Road, Mukadamganj",159,53
+54,1,"Kabadipura, City Chowk",140,54
+55,1,"8, Bread Market, Fort Market Lane",88,55
+56,1,"Nipani Sambhaji Nagar, Devchand College, Nears Teachers Colony",177,56
+57,1,"New Grasim Vihar Colony, Chaude Ke Hanuman Road, Char Shahar Ka Naka, Hazira",158,57
+58,1,"Shop No. 10, Bhora Saman Masjid, Usha Gang, Chhawani",154,58
+59,1,"C - 603, Shree Anantnathji Complex, Nehru Nagar, Kanjurmarg (East)",93,59
+60,1,"Opp. Khandroa Market, Rajmahal Road",81,60
+61,1,"Raj Kiran Apartment, Opp. Thakkar Dairy, Behind Axis Bank, Vrindavan Hospital, Kandivali (West)",97,61
+62,1,"Plot No. 187, 188, Gut No. 294, Prashanti Nagar, Opp. Dattashram, Sinkhed Raja Road, Devmurti",142,62
+63,1,"Chougule Galli, A/P Yalgud, Hatkangale",124,63
+64,1,"2512, Street No. 12, Goverdhan Bihari Colony, Shahdara",2,64
+65,1,Narnaul Road,43,65
+66,1,"44, Hirabhai Market, Diwan Ballubhai Road, Kankariya",66,66
+67,1,"Connaught Circus, Near Hind Samachar",6,67
+68,1,"Sardar Bazar, Main Road",35,68
+69,1,"Rahim Nagar, Cidco Road, Azad Chowk",140,69
+70,1,"Line no. 8, Near Azad Nagar, Near Mangal Parao",36,70
+71,1,"Near Deluxe Talklies, Behind Sai Baba Mandir, Shastri Nagar, Pimpri",111,71
+72,1,"Plot no. 18/B, Phase - 3, Nana Chiloda, Mazda Control Line, G. I. D. C. Naroda, Gate No. 2",70,72
+73,1,"Jail Road, Bahadurganj",22,73
+74,1,Charni Road,90,74
+75,1,"301 - Ghanshyam Enclave, Link Road, Near Lalji Pada Police Station, Kandivali (W)",97,75
+76,1,"Tanga Chowk, Main Road, Juni Main Line, Choti Gujri, Pangari",153,76
+77,1,"Shankar Nagar, Aapathapa Road",151,77
+78,1,"Chappersher, Afganpur, Kubbanpur",31,78
+79,1,"New Bunglow Area, Saijpur Bogha",72,79
+80,1,"505, Skyline Palmyra Building, Miller Compound, Premier Road, Ghatkopar (West)",102,80
+81,1,"Shop No. 11, Celler Attarwala Chamber, Opp. Kalupur Tower, Kakupur",62,81
+82,1,"Shade No. 33, Gajanand Industrial Estate, Nagarwel Hanuman Road, Rakhial",67,82
+83,1,"J-31, Patel Nagar, 1st",11,83
+84,1,"D - 63/63, A - 23, Adarsh Nagar, Mahmoorganj",17,84
+85,1,"791/93, Guruwar Peth, Lucky Buildng",114,85
+86,1,"343,Plot No. 3, Police Station Shejari, Ashta",125,86
+87,1,"A/P - Chinchwad, Karveer, Gandhinagar",123,87
+88,1,"Jail Road, Shivaji Nagar, Nashik Road",134,88
+89,1,"75, Tilak Rd, Ajit Prasad Nagar, Paltan Bazaar",32,89
+90,1,"Shivalay, Vibhag - 3, Asmakam Road, Behind Vejalpur Village",68,90
+91,1,"Flat No. 203, Sky Residency, Behind Hotel Pride, Manishnagar",145,91
+92,1,"Burla-Fatehgarh Road, Opp. Ravidas Mandir, Shahzadpur, Jagadhri",5,92
+93,1,"24, Vinoba Market, Near Durga Mandir Chowk, SBBJ ATM",51,93
+94,1,"Kajion Ka Chowk, Outside Mohan Market, Near Bhang Ki Dukan",53,94
+95,1,"135, Near Golden Icecream Factory, Radha Damoder Ki Galli, Loha Mandi, Kishanpole Bazaar",45,95
+96,1,"207, Shree Pooja C. H. S., Navghar Road, Bhayender (East), Near North Canada Bank",105,96
+97,1,"Unit 97, Mahalaxmi Mall, Plot No. 8 & 8B, Sector 35, Kamothe",108,97
+98,1,"410, Karim Nagar, Kasambari Dhara Nagar, Mitmita",141,98
+99,1,"Subhash Road, Shop No. 3, Nashik Road",134,99
+100,1,"8-19-253, Rahim Nagar, Cidco Road",140,100
+101,1,"302, Shreepal Nagar, B-Wing, Navghar Road, Opp. Sidhivinayak Hospital Lane, Bhayender (East)",105,101
+102,1,"Krishna Nivas', Opp. Mahadev Temple, Mogri",80,102
+103,1,"A/7, Shayona Golden Estate, Old Maheshwari Mill Compound, Behind Reliance Market, Shahibaug",64,103
+104,1,"Shop No. 26/1, Jumerati Bazar, Near Alankaar Lodge",156,104
+105,1,"5 km Talwara Milestone, Near Mukerian Hydel Power House No. 1, G. T. Road, Talwara, Tehsil Mukerian",7,105
+106,1,"Chikkodi Road, Nanadi",176,106
+107,1,"Gate no. 311, Plot No. 1642/0, Shirol Wadi Road, Jaysingpur",126,107
+108,1,Bada Bazar (Supari Bazar),50,108
+109,1,"Vayujit Mala, A/P Mangur, Tal. Chikkodi",175,109
+110,1,"155/157, Samuel Street, Hingkee Building, Masjid Bunder",91,110
+111,1,"45/A, Bombay Timber Mart, Rey Road",92,111
+112,1,"Lakshmi, Near Nivant Resort Tulasinagar, Devgad",128,112
+113,1,"N 49 & N 50, M. I. D. C. - Tarapur, Village Kumbhavali, Boisar, Taluka Palghar",107,113
+114,1,Mahatma Gandhi Road,86,114
+115,1,"25/05 Swami Samarth Nagar, Nanded Phata, Singhad Road",113,115
+116,1,"Plot No. L- 4, Phase-III, M.I.D.C.",152,116
+117,1,"23, Nishant Apartment, Thakkar Nagar, Selanpur Road",132,117
+118,1,"New No. 14/1, Old 17/1, 1st Main, 1st Cross (Opp. LIC Colony)",160,118
+119,1,"2 - Nirkar, 7 Bungalows, Andheri (West)",94,119
+120,1,"SCO 637, Kesho Ram Complex, Sector 45 - C, Burail",8,120
+121,1,"Building no. 3, Gala no. 2 & 5, Ram Mandir Industrial Estate, Goregaon (East)",96,121
+122,1,"Plot No. 35 to 38, G.I.D.C., Ganeshpur",78,122
+123,1,"Rohera House, Sahijpur Bogha, Maharshi Dayanand Marg",72,123
+124,1,"Near Railway Line, Sahijpur Bogha",72,124
+125,1,"G/17, Marathon Max, L. B. S. Marg, Mulund (West)",101,125
+126,1,"33, Zone-II, M. P. Nagar, Near Hotel Mayuri",157,126
+127,1,"27, Payga Road, Near Rosy Laundry, Itwara",156,127
+128,1,"M - 32, M. I. D. C.",139,128
+129,1,"AO/128, S. S, G. T. Road, Amrit Steel Compound ",12,129
+130,1,"12, Jay Kalash Apartment, New Opera Society, New Vikasgruh Road",65,130
+131,1,"Shop no. 3, Opp. Old Secretariate, Sultania Road, Koh-e-Fiza",156,131
+132,1,"G-1-807, Sitapura Industrial Area, Tonk Road",47,132
+133,1,"F-174 , Solaris - 1, Saki Vihar Road, Andheri (E)",99,133
+134,1,"Shelternagar, Opp. Bus Stop, Himmatnagar",76,134
+135,1,"Station Road, Himmatnagar",76,135
+136,1,"Surv. No. 1143/2, Salal - Moyad Road, Moyad, Taluka Prantij",77,136
+137,1,"275, E-Ward, Opp. Swami Teooram Hospital, Rajavir Road, Kubernagar",71,137
+138,1,"0187 B, Ismailpur",39,138
+139,1,"Plot No.5, Industrial Estate, Nagar Puna Road",117,139
+140,1,"House No. 675, Tauheed Chamber, Khan Compound, Gebi Nagar, Bhiwandi",131,140
+141,1,"19, Ashok Industrial Estate, Lal Bahadur Shastri Rd, Mulund West",101,141
+142,1,"Gopal Sadan, Brahim Society, Naupada, Thane (West)",104,142
+143,1,"Plot No 9, 10, 11 & 20, Survey No 53, Palghar (East)",106,143
+144,1,"F-21-22, Phase-1, Udhyog Vijay, Behind Water Works, RIICO",52,144
+145,1,"40-B 2nd Floor, Lajpat Nagar, Scheme No. 02",42,145
+146,1,"Plot no. 23, Industrial Area, O. T. Section, Ulhasnagar",129,146
+147,1,"Ashwin Ashok, Near Lela Masjid, Andheri West",95,147
+148,1,"Sant Kavar Ram Chowk, Kalanala",59,148
+149,1,"1479/B, S. P. Mukherjee Marg, Near Maharaja Hotel, Behind Novelty Cinema",1,149
+150,1,"357, Sarvodaya Nagar",20,150
+151,1,"61, Industrial Estate, Kalpi Road",15,151
+152,1,"L. I. C. Office, Shukulpur",21,152
+153,1,"Line no. 1, Rasala Camp, Near Madhav Darshan",59,153
+154,1,"26, Begum Bagh",34,154
+155,1,"Mohalla Allikhan Street, Ward No. 10, Near Mehandi Milap Chowk, Kashipur",26,155
+156,1,"Hubtown Solaris, N. S. Phadke Marg, Andheri (East)",98,156
+157,1,"D107 - Jhotwara Industrial Area, Near Jai Durga Dharam Kanta, Jhotwara",48,157
+158,1,"32, G. I. D. C., Ganeshpur",78,158
+159,1,"631-C, Shivaji Road",120,159
+160,1,"Shop No. 4, Vasantdada Sankul, Opp. Sanjay Stores",109,160
+161,1,"1st Floor, 300 Dawa Bazar, R. N. T. Marg",154,161
+162,1,"Old Hospital Road, Kichha",37,162
+163,1,"Umesh Nagar, N. B. D. Road",27,163
+164,1,"M - 190, M. I. D. C. Area",139,164
+165,1,"Mata Mandir Road, THDC Tea Estate, Banjarawala",32,165
+166,1,"Machharhatta, Khajekalan",179,166
+167,1,"Chowk Bazar, Shyam Nagar, Jwalapur",33,167
+168,1,"Peeth Bazar, Jwalapur",33,168
+169,1,"Kashipur Bypass Road, Near Police Chowki",38,169
+170,1,"Krishna House, Behind M. D. High School, Saijpur Bogha",72,170
+171,1,"Super Market, Railway Road, Nazibabad",28,171
+172,1,"105, G.I.D.C. Estate, Motipura, Himmatnagar",76,172
+173,1,"32- D, Karan Market",9,173
+174,1,"Behind Rajgruhi Tower, Jintan Udhyog Nagar",57,174
+175,1,"Mahila Mandal Road, Near Meghani Hospital",60,175
+176,1,"Botad Paliyad Road, Opp. Mahajan Wadi",60,176
+177,1,"Survey No. 96 P 2/2, Hadadad Kaniyad Road, Near 66 KV Sub Station, Opp. Tulsi Heritage",60,177
+178,1,Opp. Bus Stand,109,178
+179,1,"293, Gangapur, Near Mor Kothi",23,179
+180,1,Mumbai-Pune Highway,109,180
+181,1,"Block 843/ P/ 3, Nidhi Industrial Estate, Sola Santej Road, Rakanpur, Opp. Amardeep Plastics",75,181
+182,1,"194, Navi Peth, M. G. Road",138,182
+183,1,"Shiv Dham Colony, Purana Kalsia Road",30,183
+184,1,"#2- 238/1, International Trade Complex, Opp. Corporation Office, Main Road",173,184
+185,1,"Harish Market, Subash Nagar",18,185
+186,1,"H- 1/823, Ricco Industry Area",47,186
+187,1,"266/ B, Muktanand Nagar, Gopalpura Bypass, Tonk Road",46,187
+188,1,"G1- 563, Sitapura Industrial Area, Near Chatrara Circle, Sitapura",47,188
+189,1,"Shop No. 85, M. I. Road, Near Surya Mahal Restaurant",44,189
+190,1,"C A Road, Near Natwar Bus Stand, Santra Market",146,190
+191,1,"Flat No. 302, Nav Ambika Nagar, Murbad Road, Opp. Shahad Flyover",130,191
+192,1,"Nandani, Shirol",122,192
+193,1,"47, Jama Masjid",41,193
+194,1,"Bhains Bahora, Kotwali Road",40,194
+195,1,"#7, 16th Cross, Byraveshwara Industrial Estate, Near Shrushti Bank & Hospital, Hegganahalli Cross, Peenya 2nd Stage",163,195
+196,1,"402, Dhanlaxmi Apt., Upper Govind Nagar, Malad (East)",103,196
+197,1,"95, Bhagyodaya Complex, S. T. Depot Corner, Paliyad Road",60,197
+198,2,"Jaysingpur, Kolhapur",121,25
+199,2,"New Mondha, Behind APMC Office, Ekta Chowk, Nanded",144,26
+200,2,"Narol, Ahmedabad",73,47
+201,2,"G. I. D. C. Naroda,  Ahmedabad",70,72
+202,2,Wadi,148,91
+203,2,Jaysingpur,121,106
+204,2,Gandhinagar,123,109
+205,2,Modasa,78,122
+206,2,"Parasnath Complex, Bhiwandi",131,125
+207,2,"H/13-14, Govindpura Industrial Area",157,126
+208,2,Naroda,70,137
+209,2,"C/o. Timber Sales, Pvt. Ltd., Plot no. D - 1, Road no. 16, Wagle Industrial Estate, Thane (West)",104,142
+210,2,C/O Ghanshyam Mhatre,126,192
+211,2,"Pawar Corporation, A-12, Raghunath Compound, Near Dalmill Compound,  Purna, Bhiwandi",131,116
