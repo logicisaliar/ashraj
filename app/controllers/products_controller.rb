@@ -30,7 +30,7 @@ class ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
-      redirect_to host_product_path(@product)
+      redirect_to product_path(@product)
     else
       render :edit
     end
@@ -49,7 +49,7 @@ class ProductsController < ApplicationController
   end
 
   def set_product
-    @product = Product.find(params[:product_id])
+    @product = Product.find(params[:id])
   end
 
   def class_label(cls)
