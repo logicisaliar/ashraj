@@ -1,7 +1,9 @@
+<div class="container">
 <% @addresses.each do |a| %>
 <%= a.company.name %>
 <%= a.street %>
+<%= link_to "Edit", edit_address_path(a), class: "btn" %>
 <br>
 <% end %>
-
 <%= link_to "Go back", root_path %>
+</div>
