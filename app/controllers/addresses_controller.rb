@@ -11,8 +11,7 @@ class AddressesController < ApplicationController
 
   def create
     @address = Address.new(address_params)
-    @address.street = grammify(@address.street)[0]
-    raise
+    @address.street = grammify(@address.street)[-1]
     if @address.save!
       redirect_to addresses_path
     else
@@ -25,7 +24,9 @@ class AddressesController < ApplicationController
 
   def update
     if @address.update(address_params)
-      redirect_to host_address_path(@address)
+      @address[:street] = grammify(@address[:street])[-1]
+      @address.save
+      redirect_to addresses_path
     else
       render :edit
     end
@@ -53,7 +54,7 @@ class AddressesController < ApplicationController
   end
 
   def set_address
-    @address = Address.find(params[:address_id])
+    @address = Address.find(params[:id])
   end
 
   def grammify(phrase)
