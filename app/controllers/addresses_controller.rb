@@ -20,6 +20,8 @@ class AddressesController < ApplicationController
   end
 
   def edit
+    @pincodes = class_label(Pincode.all.sort_by &:pin)
+    @companies = Company.all.sort_by &:name
   end
 
   def update
