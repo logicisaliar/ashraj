@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   get 'development', to: 'pages#development'
   resources :types, only: [:index]
+  resources :transports, only: [:index]
   resources :states, only: [:index]
   resources :packings, only: [:index]
   resources :uses, only: [:index]
