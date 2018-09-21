@@ -136,4 +136,4 @@ csv.each do |row|
   t.pincode_id = row['pincode_id']
   t.save
 end
-puts "Addresses created"
+puts "Addresses created."
