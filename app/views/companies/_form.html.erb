@@ -1,0 +1,12 @@
+<h1>Company</h1>
+<div class="container">
+<%= simple_form_for company do |f| %>
+<%= f.error_notification %>
+  <%= f.input :name %>
+  <%= f.input :kind, collection: ["Trader", "User", "On Account"] %>
+  <%= f.input :pan_number, label: "PAN" %>
+  <%= f.input :gst_end, label: "GST (last 3 digits)" %>
+  <%= f.input :spl_instructions, label: "Special Instructions (if any)"%>
+  <%= f.button :submit %>
+<% end %>
+</div>
