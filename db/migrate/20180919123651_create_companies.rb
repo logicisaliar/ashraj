@@ -6,9 +6,9 @@ class CreateCompanies < ActiveRecord::Migration[5.2]
       t.integer :parent_id, optional: true
       t.text :pan_number
       t.text :gst_end
-      t.float :days
+      t.float :days, default: 30
       t.float :balance
-      t.float :open_balance
+      t.float :open_balance, default: 0
       t.string :spl_instructions
       t.float :payment_score
 
