@@ -52,11 +52,11 @@ ActiveRecord::Schema.define(version: 2018_09_19_123728) do
     t.string "name"
     t.integer "kind"
     t.integer "parent_id"
-    t.text "pan_number"
-    t.text "gst_end"
-    t.float "days"
+    t.string "pan_number"
+    t.string "gst_end"
+    t.float "days", default: 30.0
     t.float "balance"
-    t.float "open_balance"
+    t.float "open_balance", default: 0.0
     t.string "spl_instructions"
     t.float "payment_score"
     t.datetime "created_at", null: false
