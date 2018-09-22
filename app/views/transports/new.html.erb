@@ -1,0 +1,8 @@
+<%= simple_form_for @transport do |f| %>
+<%= f.error_notification %>
+  <%= f.input :name %>
+  <%= f.input :street %>
+  <%= f.input :village, collection: ["Rahanal","Purna", "Narpoli", "Kopar", "Valpada", "Kalher", "Gopal Nagar", "Owali"]  %>
+  <%= f.input :number %>
+  <%= f.button :submit %>
+<% end %>
