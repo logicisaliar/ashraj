@@ -129,6 +129,8 @@ ActiveRecord::Schema.define(version: 2018_09_21_120620) do
 
   create_table "transports", force: :cascade do |t|
     t.string "name"
+    t.string "street"
+    t.string "village"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

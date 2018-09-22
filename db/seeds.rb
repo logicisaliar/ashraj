@@ -144,6 +144,9 @@ csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 csv.each do |row|
   t = Transport.new
   t.name = row['name']
+  t.street = row['street']
+  t.village = row['village']
+  t.number = row['number']
   t.save
 end
 puts "Transports created"
