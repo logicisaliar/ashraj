@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_21_120620) do
+ActiveRecord::Schema.define(version: 2018_09_27_140022) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,6 +131,7 @@ ActiveRecord::Schema.define(version: 2018_09_21_120620) do
     t.string "name"
     t.string "street"
     t.string "village"
+    t.string "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -154,6 +155,14 @@ ActiveRecord::Schema.define(version: 2018_09_21_120620) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "company_id"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "photo"
+    t.integer "role"
+    t.date "dob"
+    t.integer "aadhar"
+    t.index ["company_id"], name: "index_users_on_company_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -172,4 +181,5 @@ ActiveRecord::Schema.define(version: 2018_09_21_120620) do
   add_foreign_key "pincodes", "cities"
   add_foreign_key "products", "harmonics"
   add_foreign_key "products", "types"
+  add_foreign_key "users", "companies"
 end
