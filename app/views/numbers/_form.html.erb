@@ -1,0 +1,8 @@
+<h1>Number</h1>
+
+<%= simple_form_for number do |f| %>
+<%= f.error_notification %>
+  <%= f.input :num %>
+  <%= f.input :primary, collection: [:main, :landline, :other] %>
+  <%= f.button :submit %>
+<% end %>
