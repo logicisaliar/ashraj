@@ -1,6 +1,6 @@
 class NumbersController < ApplicationController
   skip_before_action :authenticate_user!
-  before_action :set_pincode, only: [:edit, :update]
+  before_action :set_number, only: [:edit, :update]
 
   def new
     @number = Number.new

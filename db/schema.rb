@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_27_140022) do
+ActiveRecord::Schema.define(version: 2018_10_02_100651) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,28 @@ ActiveRecord::Schema.define(version: 2018_09_27_140022) do
     t.datetime "updated_at", null: false
     t.index ["packing_id"], name: "index_items_on_packing_id"
     t.index ["product_id"], name: "index_items_on_product_id"
+  end
+
+  create_table "mails", force: :cascade do |t|
+    t.string "eadd"
+    t.integer "primary"
+    t.bigint "company_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_mails_on_company_id"
+    t.index ["user_id"], name: "index_mails_on_user_id"
+  end
+
+  create_table "numbers", force: :cascade do |t|
+    t.string "num"
+    t.integer "primary"
+    t.bigint "user_id"
+    t.bigint "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_numbers_on_company_id"
+    t.index ["user_id"], name: "index_numbers_on_user_id"
   end
 
   create_table "packings", force: :cascade do |t|
@@ -178,6 +200,10 @@ ActiveRecord::Schema.define(version: 2018_09_27_140022) do
   add_foreign_key "cities", "states"
   add_foreign_key "items", "packings"
   add_foreign_key "items", "products"
+  add_foreign_key "mails", "companies"
+  add_foreign_key "mails", "users"
+  add_foreign_key "numbers", "companies"
+  add_foreign_key "numbers", "users"
   add_foreign_key "pincodes", "cities"
   add_foreign_key "products", "harmonics"
   add_foreign_key "products", "types"
