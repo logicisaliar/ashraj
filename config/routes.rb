@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'mails/new'
+  get 'mails/edit'
+  get 'mails/index'
   get 'numbers/index'
   devise_for :users
   root to: 'pages#home'

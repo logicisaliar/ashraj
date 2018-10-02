@@ -1,5 +1,5 @@
-class Number < ApplicationRecord
+class Mail < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :company, optional: true
-  enum primary: [:main, :landline, :other]
+  enum primary: [:main, :other]
 end
