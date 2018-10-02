@@ -1,7 +1,17 @@
 <h2>Hitting array</h2>
-<h1><%= array.first.class.name.pluralize %></h1>
-<% array.each do |a| %>
-  <%= a.name %>
-<% end %>
+<table class="highlight table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th><%= array.first.class.name.pluralize %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% array.each do |a| %>
+    <tr>
+      <td><%= a.name %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <%= link_to "Go back", root_path %>
