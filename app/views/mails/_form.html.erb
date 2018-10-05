@@ -2,7 +2,7 @@
 
 <%= simple_form_for mail do |f| %>
 <%= f.error_notification %>
-  <%= f.input :eadd %>
+  <%= f.input :eadd, label: "Email" %>
   <%= f.input :primary, collection: [:main, :other] %>
   <%= f.button :submit %>
 <% end %>

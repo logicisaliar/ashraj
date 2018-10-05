@@ -156,10 +156,10 @@ csv_text = File.read(Rails.root.join('lib', 'seeds', "number.csv"))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 csv.each do |row|
   t = Number.new
-  # t.name = row['name']
-  # t.street = row['street']
-  # t.village = row['village']
-  # t.number = row['number']
+  t.num = row['num']
+  t.primary = row['primary']
+  t.company_id = row['company_id']
+  t.user_id = row['user_id']
   t.save
 end
 puts "Numbers created"
@@ -169,10 +169,10 @@ csv_text = File.read(Rails.root.join('lib', 'seeds', "mail.csv"))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 csv.each do |row|
   t = Mail.new
-  # t.name = row['name']
-  # t.street = row['street']
-  # t.village = row['village']
-  # t.number = row['number']
+  t.eadd = row['eadd']
+  t.primary = row['primary']
+  t.company_id = row['company_id']
+  t.user_id = row['user_id']
   t.save
 end
-puts "Mails cre4ted"
+puts "Mails created"
