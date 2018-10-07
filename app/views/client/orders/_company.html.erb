@@ -1,0 +1,5 @@
+<%= simple_form_for order, :url => {:action => "new"} do |f| %>
+<%= f.error_notification %>
+  <%= f.input :company_id, collection: Company.all %>
+  <%= f.button :submit %>
+<% end %>

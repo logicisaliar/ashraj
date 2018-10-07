@@ -1,4 +1,4 @@
-class Client::Order < ApplicationRecord
+class Order < ApplicationRecord
   belongs_to :company
   belongs_to :item
   belongs_to :transport

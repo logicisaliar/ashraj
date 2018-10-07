@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_02_100651) do
+ActiveRecord::Schema.define(version: 2018_10_07_090516) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,47 @@ ActiveRecord::Schema.define(version: 2018_10_02_100651) do
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_numbers_on_company_id"
     t.index ["user_id"], name: "index_numbers_on_user_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "company_id"
+    t.bigint "item_id"
+    t.bigint "transport_id"
+    t.integer "status"
+    t.datetime "complete_date"
+    t.datetime "confirmation_date"
+    t.datetime "packed_date"
+    t.datetime "invoice_date"
+    t.datetime "dispatch_date"
+    t.datetime "release_date"
+    t.integer "invoice_numer"
+    t.float "invoice_amount"
+    t.float "invoice_subtotal"
+    t.float "quantity_kg"
+    t.float "quantity_l"
+    t.string "lr"
+    t.float "freight"
+    t.float "courier_charge"
+    t.float "igst"
+    t.float "cgst"
+    t.float "sgst"
+    t.string "remark"
+    t.bigint "user_id"
+    t.string "lr_photo"
+    t.string "salesperson"
+    t.float "other_taxes"
+    t.float "misc_charges"
+    t.bigint "address_id"
+    t.float "sample_kg"
+    t.float "sample_l"
+    t.integer "order_num"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address_id"], name: "index_orders_on_address_id"
+    t.index ["company_id"], name: "index_orders_on_company_id"
+    t.index ["item_id"], name: "index_orders_on_item_id"
+    t.index ["transport_id"], name: "index_orders_on_transport_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "packings", force: :cascade do |t|
@@ -204,6 +245,11 @@ ActiveRecord::Schema.define(version: 2018_10_02_100651) do
   add_foreign_key "mails", "users"
   add_foreign_key "numbers", "companies"
   add_foreign_key "numbers", "users"
+  add_foreign_key "orders", "addresses"
+  add_foreign_key "orders", "companies"
+  add_foreign_key "orders", "items"
+  add_foreign_key "orders", "transports"
+  add_foreign_key "orders", "users"
   add_foreign_key "pincodes", "cities"
   add_foreign_key "products", "harmonics"
   add_foreign_key "products", "types"
