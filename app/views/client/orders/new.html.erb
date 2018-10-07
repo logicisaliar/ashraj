@@ -1,5 +1,12 @@
 <% if @order.company.nil? %>
+  <% raise %>
   <%= render "company", order: @order %>
+<% elsif @order.company.addresses.length > 1 %>
+  <%= render "address", order: @order %>
+<% elsif @order.item.nil? %>
+  <%# @products = class_label(Product.all) %>
+  <%# @packings = packing_label(Packing.all) %>
+  <%= render "items/form", item: Item.new %>
 <% else %>
-  YOOOO
+  YOOOOOOOO
 <% end %>

@@ -4,12 +4,16 @@ class Client::OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
 
   def new
-    @order = Order.new
+    if @order.nil?
+      @order = Order.new
+    end
   end
 
   def create
     @order = Order.new(order_params)
-    if @order.save!
+    @products = class_label(Product.all)
+    @packings = packing_label(Packing.all)
+    if @order.save
       redirect_to orders_path
     else
       render :new
@@ -45,7 +49,19 @@ class Client::OrdersController < ApplicationController
   def class_label(cls)
     return_array = []
     cls.each do |p|
-      return_array << [p.id, p.hsn]
+      return_array << [p.id, p.name]
+    end
+    return_array
+  end
+
+  def packing_label(cls)
+    return_array = []
+    cls.each do |p|
+      if p.sample
+        a = "#{p.pack_size} (Sample)"
+      else a = p.pack_size
+      end
+        return_array << [p.id, a]
     end
     return_array
   end

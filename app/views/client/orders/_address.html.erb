@@ -1,5 +1,5 @@
 <%= simple_form_for order, url: client_orders_path do |f| %>
 <%= f.error_notification %>
-  <%= f.input :company_id, collection: Company.all %>
+  <%= f.input :address_id, collection: Address.where(company: order.company).all %>
   <%= f.button :submit %>
 <% end %>
