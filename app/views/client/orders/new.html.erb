@@ -6,7 +6,7 @@
 <% elsif @order.item.nil? %>
   <%# @products = class_label(Product.all) %>
   <%# @packings = packing_label(Packing.all) %>
-  <%= render "items/form", item: Item.new %>
+  <%= render "client/items/form", item: Item.new %>
 <% else %>
   YOOOOOOOO
 <% end %>

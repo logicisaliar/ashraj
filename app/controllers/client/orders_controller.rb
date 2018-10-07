@@ -9,10 +9,9 @@ class Client::OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    @products = class_label(Product.all)
-    @packings = packing_label(Packing.all)
+
     if @order.save
-      redirect_to orders_path
+      redirect_to edit_client_order_path(@order)
     else
       render :new
     end
@@ -26,6 +25,8 @@ class Client::OrdersController < ApplicationController
   end
 
   def edit
+    @products = class_label(Product.all)
+    @packings = packing_label(Packing.all)
   end
 
   def update
