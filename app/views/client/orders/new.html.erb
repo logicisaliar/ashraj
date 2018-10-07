@@ -1,8 +1,8 @@
 <% if @order.company.nil? %>
-  <% raise %>
   <%= render "company", order: @order %>
 <% elsif @order.company.addresses.length > 1 %>
   <%= render "address", order: @order %>
+  <% raise %>
 <% elsif @order.item.nil? %>
   <%# @products = class_label(Product.all) %>
   <%# @packings = packing_label(Packing.all) %>

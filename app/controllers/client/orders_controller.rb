@@ -4,9 +4,7 @@ class Client::OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
 
   def new
-    if @order.nil?
-      @order = Order.new
-    end
+    @order = Order.new
   end
 
   def create
