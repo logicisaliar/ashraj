@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
   get 'development', to: 'pages#development'
+  namespace :client do
+     resources :orders
+  end
   resources :types, only: [:index]
   resources :states, only: [:index]
   resources :packings, only: [:index]
