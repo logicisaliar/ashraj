@@ -4,5 +4,6 @@ class Company < ApplicationRecord
   has_many :addresses
   has_many :numbers
   has_many :mails
+  has_many :orders
   validates :name, uniqueness: true
 end

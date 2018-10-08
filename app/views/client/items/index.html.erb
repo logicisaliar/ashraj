@@ -7,3 +7,5 @@
 <%= link_to "Delete", item_path(i), method: :delete %>
 <br>
 <% end %>
+<%= link_to "Add more items", new_client_order_item_path(params[:order_id]) %>
+<%= link_to "Order Complete", client_orders_path %>
