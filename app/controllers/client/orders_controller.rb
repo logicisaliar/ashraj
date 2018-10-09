@@ -9,9 +9,12 @@ class Client::OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-
+    if @order.company.addresses.length == 1
+      @order.address = @order.company.addresses[0]
+    end
+    @order.pending!
     if @order.save
-      redirect_to edit_client_order_path(@order)
+      redirect_to new_line_path(@order)
     else
       render :new
     end
@@ -30,6 +33,7 @@ class Client::OrdersController < ApplicationController
   end
 
   def update
+    raise
     if @order.update(order_params)
       redirect_to order_path(@order)
     else
@@ -60,7 +64,7 @@ class Client::OrdersController < ApplicationController
         a = "#{p.pack_size} (Sample)"
       else a = p.pack_size
       end
-        return_array << [p.id, a]
+      return_array << [p.id, a]
     end
     return_array
   end

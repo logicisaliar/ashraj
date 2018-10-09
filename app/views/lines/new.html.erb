@@ -1,2 +1,1 @@
-<h1>Lines#new</h1>
-<p>Find me in app/views/lines/new.html.erb</p>
+<%= render "client/items/form", item: Item.new, order: Order.find(params[:format]) %>

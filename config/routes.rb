@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :new, :create]
   end
 end
+resources :lines
 resources :items, only: [:show, :edit, :update, :destroy]
 resources :types, only: [:index]
 resources :states, only: [:index]
