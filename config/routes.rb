@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'lines/new'
-  get 'lines/edit'
-  get 'lines/index'
   devise_for :users
   root to: 'pages#home'
   get 'development', to: 'pages#development'

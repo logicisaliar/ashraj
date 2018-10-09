@@ -11,27 +11,35 @@ class LinesController < ApplicationController
   end
 
   def create
-    @line = Line.new(line_params)
-    raise
-    if @line.save
-      redirect_to lines_path(@line)
+    @item = Item.new(line_params)
+    # @line = Line.new(line_params)
+    if @item.save!
+      redirect_to lines_path(params[:order_id])
     else
       render :new
+      # calculate amount and quanity
     end
+    @line = Line.new
+    @line.item = @item
+    @line.order_id = params[:order_id]
+    @line.save!
   end
 
   def edit
   end
 
   def index
-    raise
-    @lines = Line.all
+    @lines = Line.where(order_id: params[:format])
   end
 
   private
 
   def set_line
     @line = Line.find(params[:id])
+  end
+
+  def line_params
+    params.require(:item).permit(:product_id, :packing_id, :quantity, :discount)
   end
 
   def class_label(cls)

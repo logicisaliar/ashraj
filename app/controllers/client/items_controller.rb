@@ -11,7 +11,7 @@ class Client::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save!
-      redirect_to client_order_items_path(params[:order_id])
+      redirect_to lines_path
     else
       render :new
       # calculate amount and quanity
