@@ -1,6 +1,6 @@
 <% if @order.company.addresses.length > 1 %>
   <%= render "address", order: @order %>
-<% elsif @order.item.nil? %>
+<% elsif @order.lines.length == 0 %>
   <%# @products = class_label(Product.all) %>
   <%# @packings = packing_label(Packing.all) %>
   <%= render "client/items/form", item: Item.new %>

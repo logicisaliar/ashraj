@@ -1,5 +1,9 @@
 <%= simple_form_for order, url: client_orders_path do |f| %>
 <%= f.error_notification %>
-  <%= f.input :address_id, collection: Address.where(company: order.company).all %>
+  <%= f.input :address_id, collection: @addresses, label_method: :second, value_method: :first %>
+  <div class="hidden">
+  <%= f.input_field "", name: "company", value: order.company.id %>
+  </div>
+
   <%= f.button :submit %>
 <% end %>

@@ -1,9 +1,17 @@
+<% if params[:format].nil? %>
+  <% order_id = params[:order_id] %>
+<% else %>
+  <% order_id = params[:format] %>
+<% end %>
 <h1>Please add new Item</h1>
-<%= simple_form_for item, url: client_order_items_path(@order) do |f| %>
+<%= simple_form_for item, url: lines_path(order_id) do |f| %>
 <%= f.error_notification %>
 <%= f.input :product_id, collection: @products, label_method: :second, value_method: :first  %>
 <%= f.input :packing_id, collection: @packings, label_method: :second, value_method: :first  %>
 <%= f.input :quantity %>
+<div class="hidden">
+  <%= f.input_field "YOOOO", name: "order_id", value: order_id %>
+</div>
 <%= f.button :submit %>
 <% end %>
 <br>

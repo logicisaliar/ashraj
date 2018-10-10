@@ -9,9 +9,17 @@ class Client::OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-
+    unless params[:company].nil?
+      @order.company = Company.find(params[:company])
+    end
+    if @order.company.addresses.length == 1
+      @order.address = @order.company.addresses[0]
+    else
+      @addresses = address_label(Address.where(company: @order.company).all)
+    end
+    @order.status = 0
     if @order.save
-      redirect_to edit_client_order_path(@order)
+      redirect_to new_line_path(@order)
     else
       render :new
     end
@@ -30,6 +38,7 @@ class Client::OrdersController < ApplicationController
   end
 
   def update
+    raise
     if @order.update(order_params)
       redirect_to order_path(@order)
     else
@@ -42,6 +51,9 @@ class Client::OrdersController < ApplicationController
     redirect_to client_orders_path
   end
 
+  def get_address
+    render '/client/order/get_address'
+  end
 
   private
 
@@ -53,6 +65,14 @@ class Client::OrdersController < ApplicationController
     return_array
   end
 
+  def address_label(cls)
+    return_array = []
+    cls.each do |p|
+      return_array << [p.id, p.street]
+    end
+    return_array
+  end
+
   def packing_label(cls)
     return_array = []
     cls.each do |p|
@@ -60,16 +80,17 @@ class Client::OrdersController < ApplicationController
         a = "#{p.pack_size} (Sample)"
       else a = p.pack_size
       end
-        return_array << [p.id, a]
+      return_array << [p.id, a]
     end
     return_array
   end
 
   def order_params
-    params.require(:order).permit(:company_id, :item_id, :transport_id, :remark, :user_id, :other_taxes, :misc_charges)
+    params.require(:order).permit(:company_id, :item_id, :transport_id, :remark, :user_id, :other_taxes, :misc_charges, :address_id)
   end
 
   def set_order
     @order = Order.find(params[:id])
   end
+
 end

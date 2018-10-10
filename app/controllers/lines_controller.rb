@@ -1,37 +1,45 @@
-class Client::ItemsController < ApplicationController
+class LinesController < ApplicationController
+
+  before_action :set_line, only: [:show, :edit, :update, :destroy]
   skip_before_action :authenticate_user!
 
   def new
+    @line = Line.new
+    @line.order_id = params[:format]
     @products = class_label(Product.all)
     @packings = packing_label(Packing.all)
-    @order = Order.find(params[:order_id])
-    @item = Item.new
   end
 
   def create
-    @item = Item.new(item_params)
+    @item = Item.new(line_params)
+    # @line = Line.new(line_params)
     if @item.save!
-      redirect_to lines_path
+      redirect_to lines_path(params[:order_id])
     else
       render :new
       # calculate amount and quanity
     end
+    @line = Line.new
+    @line.item = @item
+    @line.order_id = params[:order_id]
+    @line.save!
+  end
+
+  def edit
   end
 
   def index
-    @items = Item.all
+    @lines = Line.where(order_id: params[:format])
   end
 
   private
 
-  def csv_read(filename)
-    csv_text = File.read(Rails.root.join('lib', 'seeds', "#{filename}.csv"))
-    csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
-    csv.each do |row|
-      t = Item.new
-      t.name = row['name']
-      t.save
-    end
+  def set_line
+    @line = Line.find(params[:id])
+  end
+
+  def line_params
+    params.require(:item).permit(:product_id, :packing_id, :quantity, :discount)
   end
 
   def class_label(cls)
@@ -54,7 +62,4 @@ class Client::ItemsController < ApplicationController
     return_array
   end
 
-  def item_params
-    params.require(:item).permit(:product_id, :packing_id, :quantity, :discount)
-  end
 end
