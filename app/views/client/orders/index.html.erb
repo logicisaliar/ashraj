@@ -1,7 +1,7 @@
 <div class="container">
   <% @orders.each do |o| %>
   <div class="row">
-    <%= o.company.name %>
+    <%= link_to "#{o.company.name}", client_order_path(o) %>
     <%= o.address.pincode.city.name %> - <%= o.status %>
   </div>
   <% end %>

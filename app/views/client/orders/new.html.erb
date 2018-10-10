@@ -2,8 +2,8 @@
   <%= render "company", order: @order %>
 <% elsif @order.company.addresses.length > 1 %>
   <%= render "address", order: @order %>
-  <% raise %>
 <% elsif @order.lines.length == 0 %>
+
   <%# @products = class_label(Product.all) %>
   <%# @packings = packing_label(Packing.all) %>
   <% redirect_to new_line_path %>
