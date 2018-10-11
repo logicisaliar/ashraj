@@ -1,5 +1,6 @@
 <% if @order.status == "pending" %>
-YOOOOOOOOO
+<%= render "pending", lines: @lines, order: @order %>
+
 <% else %>
 More than pending
 <% end %>

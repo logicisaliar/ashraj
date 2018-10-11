@@ -1,0 +1,8 @@
+<h1>Order Number - <%= order.order_num %></h1>
+<h2>Order Status - <%= order.status %></h2>
+<div class="card">
+  <%= render '/shared/company_card', company: order.company %>
+</div>
+<div class="container">
+  <%= render '/shared/order_list', lines: lines %>
+</div>

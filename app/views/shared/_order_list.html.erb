@@ -1,0 +1,30 @@
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Product Name</th>
+      <th>Quantity</th>
+      <th>Packing</th>
+      <th>Total</th>
+      <th>MRP</th>
+      <th>Amount</th>
+      <th>Discount</th>
+      <th>GST</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% lines.each do |l| %>
+    <tr>
+      <% product = l.item.product %>
+      <% packing = l.item.packing %>
+      <td><%= product.name %></td>
+      <td><%= l.item.quantity %></td>
+      <td><%= packing.pack_size %></td>
+      <td><%= l.item.quantity * packing.pack_size %> <%= product.unit %></td>
+      <td><%= product.mrp %></td>
+      <td><%= product.mrp * l.item.quantity * packing.pack_size %></td>
+      <td><%= product.discount %></td>
+      <td><%= product.gst * product.mrp * l.item.quantity * packing.pack_size %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

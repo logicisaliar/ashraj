@@ -30,6 +30,7 @@ class Client::OrdersController < ApplicationController
   end
 
   def show
+    @lines = Line.where(order_id: @order.id).all
   end
 
   def edit
