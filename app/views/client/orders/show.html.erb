@@ -1,6 +1,10 @@
-<% if @order.status == "pending" %>
-<%= render "pending", lines: @lines, order: @order %>
-
-<% else %>
-More than pending
-<% end %>
+<div class="container">
+  <% if @order.status == "invoiced" %>
+  <%= render "invoiced", lines: @lines, order: @order %>
+  <% elsif @order.status == "dispatched" %>
+  <% elsif @order.status == "released" %>
+  <% end %>
+  <%= render "order_details", lines: @lines, order: @order %>
+  <%= link_to "Update Status", client_order_path(@order, status_up: @order.status), class: "btn btn-primary" %>
+  <%= link_to "Trace Status Back", client_order_path(@order, status_down: @order.status), class: "btn btn-primary" %>
+</div>

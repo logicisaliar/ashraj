@@ -1,4 +1,3 @@
-<div class="container">
 <h3><%= company.name %></h3>
 <% city = Address.where(company: company, kind: 1)[0].pincode.city %>
 <h6><%= city.name %> | <%= city.state.name %></h6>
@@ -13,4 +12,3 @@
 <%= company.pan_number %>
 <%= company.gst_end %>
 </h6>
-</div>

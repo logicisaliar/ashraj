@@ -3,6 +3,7 @@ class Client::OrdersController < ApplicationController
   skip_before_action :authenticate_user!
   before_action :set_order, only: [:show, :edit, :update, :destroy]
 
+  STATUS = ["pending", "completed", "confirmed", "packed", "invoiced", "dispatched", "released"]
   def new
     @order = Order.new
   end
@@ -31,6 +32,18 @@ class Client::OrdersController < ApplicationController
 
   def show
     @lines = Line.where(order_id: @order.id).all
+    status_up = params[:status_up]
+    status_down = params[:status_down]
+    unless status_down.nil?
+      unless status_down == "pending"
+        @order.status = STATUS[STATUS.index(status_down) - 1]
+      end
+    end
+    unless status_up.nil?
+      unless status_down == "released"
+        @order.status = STATUS[STATUS.index(status_up) + 1]
+      end
+    end
   end
 
   def edit
