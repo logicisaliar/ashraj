@@ -9,20 +9,22 @@
       <%= render '/shared/company_card', company: @order.company %>
     </div>
   </div>
-  <% if @order.status == "invoiced" %>
+  <% if @order.status == "packed" %>
+  <%= render "packed", lines: @lines, order: @order %>
+  <% elsif @order.status == "invoiced" %>
   <%= render "invoiced", lines: @lines, order: @order %>
   <% elsif @order.status == "dispatched" %>
-  <% elsif @order.status == "released" %>
+  <%= render "dispatched", lines: @lines, order: @order %>
   <% end %>
-  <!-- List of Lines in the Order -->
-  <%= render "order_details", lines: @lines, order: @order %>
   <!-- Change Order Status -->
   <br>
-  <% unless @order.status == "released" %>
-  <%= link_to "Status Up", client_order_path(@order, status_up: @order.status), class: "btn btn-primary" %>
+  <% unless @order.status == "released" || @order.status == "dispatched" || @order.status == "invoiced" || @order.status == "packed" %>
+  <%= link_to "Status Up", client_order_path(@order, status_up: @order.status), class: "btn btn-success" %>
   <% end %>
   <br>
   <% unless @order.status == "pending" %>
-  <%= link_to "Status Down", client_order_path(@order, status_down: @order.status), class: "btn btn-primary" %>
+  <%= link_to "Status Down", client_order_path(@order, status_down: @order.status), class: "btn btn-danger" %>
   <% end %>
 </div>
+  <!-- List of Lines in the Order -->
+  <%= render "order_details", lines: @lines, order: @order %>
