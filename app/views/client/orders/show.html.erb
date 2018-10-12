@@ -1,5 +1,28 @@
-<% if @order.status == "pending" %>
-YOOOOOOOOO
-<% else %>
-More than pending
-<% end %>
+<div class="container">
+  <div class="order-top">
+    <div class="card">
+      <!-- Order Number and Status -->
+      <%= render '/shared/order_brief', order: @order %>
+    </div>
+    <div class="card">
+      <!-- Company card -->
+      <%= render '/shared/company_card', company: @order.company %>
+    </div>
+  </div>
+  <% if @order.status == "invoiced" %>
+  <%= render "invoiced", lines: @lines, order: @order %>
+  <% elsif @order.status == "dispatched" %>
+  <% elsif @order.status == "released" %>
+  <% end %>
+  <!-- List of Lines in the Order -->
+  <%= render "order_details", lines: @lines, order: @order %>
+  <!-- Change Order Status -->
+  <br>
+  <% unless @order.status == "released" %>
+  <%= link_to "Status Up", client_order_path(@order, status_up: @order.status), class: "btn btn-primary" %>
+  <% end %>
+  <br>
+  <% unless @order.status == "pending" %>
+  <%= link_to "Status Down", client_order_path(@order, status_down: @order.status), class: "btn btn-primary" %>
+  <% end %>
+</div>

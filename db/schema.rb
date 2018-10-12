@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2018_10_08_160140) do
     t.bigint "state_id"
     t.float "lat"
     t.float "lng"
+    t.integer "std_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["state_id"], name: "index_cities_on_state_id"
@@ -64,10 +65,10 @@ ActiveRecord::Schema.define(version: 2018_10_08_160140) do
   end
 
   create_table "harmonics", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.integer "hsn"
     t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "items", force: :cascade do |t|
@@ -119,13 +120,13 @@ ActiveRecord::Schema.define(version: 2018_10_08_160140) do
     t.bigint "item_id"
     t.bigint "transport_id"
     t.integer "status"
-    t.datetime "complete_date"
-    t.datetime "confirmation_date"
-    t.datetime "packed_date"
-    t.datetime "invoice_date"
-    t.datetime "dispatch_date"
-    t.datetime "release_date"
-    t.integer "invoice_numer"
+    t.date "complete_date"
+    t.date "confirmation_date"
+    t.date "packed_date"
+    t.date "invoice_date"
+    t.date "dispatch_date"
+    t.date "release_date"
+    t.integer "invoice_number"
     t.float "invoice_amount"
     t.float "invoice_subtotal"
     t.float "quantity_kg"
@@ -176,12 +177,12 @@ ActiveRecord::Schema.define(version: 2018_10_08_160140) do
     t.text "description"
     t.bigint "type_id"
     t.float "mrp"
+    t.float "gst"
     t.string "unit"
     t.bigint "harmonic_id"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "gst"
     t.index ["harmonic_id"], name: "index_products_on_harmonic_id"
     t.index ["type_id"], name: "index_products_on_type_id"
   end
@@ -204,6 +205,7 @@ ActiveRecord::Schema.define(version: 2018_10_08_160140) do
     t.string "street"
     t.string "village"
     t.string "number"
+    t.boolean "courier"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

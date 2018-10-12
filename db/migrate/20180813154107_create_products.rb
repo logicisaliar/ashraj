@@ -5,6 +5,7 @@ class CreateProducts < ActiveRecord::Migration[5.2]
       t.text :description
       t.references :type, foreign_key: true
       t.float :mrp
+      t.float :gst
       t.string :unit
       t.references :harmonic, foreign_key: true
       t.string :name

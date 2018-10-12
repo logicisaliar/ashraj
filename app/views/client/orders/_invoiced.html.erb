@@ -1,0 +1,8 @@
+<%= simple_form_for @order, url: client_order_path(@order) do |f| %>
+<%= f.error_notification %>
+  <%= f.input :invoice_date %>
+  <%= f.input :invoice_number %>
+  <%= f.input :other_taxes %>
+  <%= f.input :misc_charges %>
+  <%= f.button :submit %>
+<% end %>
