@@ -5,6 +5,7 @@ class CreateCities < ActiveRecord::Migration[5.2]
       t.references :state, foreign_key: true
       t.float :lat
       t.float :lng
+      t.integer :std_code
 
       t.timestamps
     end

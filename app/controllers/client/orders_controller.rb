@@ -18,7 +18,6 @@ class Client::OrdersController < ApplicationController
     else
       @addresses = address_label(Address.where(company: @order.company).all)
     end
-    @order.status = 0
     if @order.save
       redirect_to new_line_path(@order)
     else
@@ -35,14 +34,10 @@ class Client::OrdersController < ApplicationController
     status_up = params[:status_up]
     status_down = params[:status_down]
     unless status_down.nil?
-      unless status_down == "pending"
-        @order.status = STATUS[STATUS.index(status_down) - 1]
-      end
+      @order.status = STATUS[STATUS.index(status_down) - 1]
     end
     unless status_up.nil?
-      unless status_down == "released"
-        @order.status = STATUS[STATUS.index(status_up) + 1]
-      end
+      @order.status = STATUS[STATUS.index(status_up) + 1]
     end
   end
 
@@ -54,7 +49,7 @@ class Client::OrdersController < ApplicationController
   def update
     raise
     if @order.update(order_params)
-      redirect_to order_path(@order)
+      redirect_to client_order_path(@order)
     else
       render :edit
     end
