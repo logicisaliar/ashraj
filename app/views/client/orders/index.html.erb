@@ -1,9 +1,8 @@
 <div class="container">
+  <%= link_to '<i class="fas fa-plus"></i> Add New Order'.html_safe, new_client_order_path, class: "btn" %>
   <% @orders.each do |o| %>
   <div class="row">
-    <%= link_to "#{o.company.name}", client_order_path(o) %>
-    <%= o.address.pincode.city.name %> - <%= o.status %>
+    <%= render "order_card", lines: @lines, o: o %>
   </div>
   <% end %>
 </div>
-<%= link_to "Add New Order", new_client_order_path, class: "btn" %>

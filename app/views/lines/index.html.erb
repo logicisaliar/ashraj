@@ -1,6 +1,6 @@
 <% @lines.each do |l| %>
 <%= l.order.company.name %>
 <%= l.item.product.name %>
-<%= link_to "Add more items", new_client_order_item_path(l.order), order_id: l.order_id, address_id: l.order.address_id %>
 <% end %>
 <%= link_to "Order Complete", client_orders_path %>
+<%= link_to "Add more items", new_client_order_item_path(@lines[0].order), order_id: @lines[0].order_id, address_id: @lines[0].order.address_id %>

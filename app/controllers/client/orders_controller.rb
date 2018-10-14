@@ -28,7 +28,7 @@ class Client::OrdersController < ApplicationController
   def index
     @orders = Order.all
     @orders.each do |o|
-      o.status = set_status(o).status
+      o = set_status(o)
     end
   end
 
@@ -36,16 +36,17 @@ class Client::OrdersController < ApplicationController
     @lines = Line.where(order_id: @order.id).all
     status_up = params[:status_up]
     status_down = params[:status_down]
-    @order.status = set_status(@order).status
+    @order = set_status(@order)
     unless status_down.nil?
       @order.status = STATUS[STATUS.index(status_down) - 1]
-      if STATUS.index(@order.status) > 3
-        @order.status = status_rollback(@order).status
+      if STATUS.index(@order.status) >= 3
+        @order = status_rollback(@order)
       end
     end
     unless status_up.nil?
       @order.status = STATUS[STATUS.index(status_up) + 1]
     end
+    @order.save!
   end
 
   def edit
@@ -56,7 +57,7 @@ class Client::OrdersController < ApplicationController
   def update
     @order.status = params[:status]
     if @order.update(order_params)
-      @order.status = set_status(@order).status
+      @order = set_status(@order)
       redirect_to client_order_path(@order)
     else
       render :edit
@@ -124,7 +125,7 @@ class Client::OrdersController < ApplicationController
   end
 
   def status_rollback(o)
-    status = STATUS.index(@order.status)
+    status = STATUS.index(@order.status) + 1
     if status == 4
       o.invoiced_date = nil
       o.invoice_number = nil

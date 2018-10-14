@@ -18,7 +18,7 @@
   <% end %>
   <!-- Change Order Status -->
   <br>
-  <% unless @order.status == "released" || @order.status == "dispatched" || @order.status == "invoiced" || @order.status == "packed" %>
+  <% if @order.status == "pending" || @order.status == "completed" || @order.status == "confirmed" %>
   <%= link_to "Status Up", client_order_path(@order, status_up: @order.status), class: "btn btn-success" %>
   <% end %>
   <br>
