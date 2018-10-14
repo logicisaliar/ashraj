@@ -1,0 +1,8 @@
+<%= simple_form_for @order, url: client_order_path(@order), html: { class: 'form-inline' } do |f| %>
+<%= f.error_notification %>
+  <%= f.input :released_date %>
+  <div class="hidden">
+  <%= f.input_field "Pass Params", name: "status", value: @order.status %>
+</div>
+  <%= f.button :submit, class: "btn btn-success" %>
+<% end %>

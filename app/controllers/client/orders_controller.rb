@@ -2,7 +2,7 @@ class Client::OrdersController < ApplicationController
 
   skip_before_action :authenticate_user!
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-
+  #             0           1             2         3           4           5             6
   STATUS = ["pending", "completed", "confirmed", "packed", "invoiced", "dispatched", "released"]
   def new
     @order = Order.new
@@ -27,18 +27,26 @@ class Client::OrdersController < ApplicationController
 
   def index
     @orders = Order.all
+    @orders.each do |o|
+      o = set_status(o)
+    end
   end
 
   def show
     @lines = Line.where(order_id: @order.id).all
     status_up = params[:status_up]
     status_down = params[:status_down]
+    @order = set_status(@order)
     unless status_down.nil?
       @order.status = STATUS[STATUS.index(status_down) - 1]
+      if STATUS.index(@order.status) >= 3
+        @order = status_rollback(@order)
+      end
     end
     unless status_up.nil?
       @order.status = STATUS[STATUS.index(status_up) + 1]
     end
+    @order.save!
   end
 
   def edit
@@ -47,8 +55,9 @@ class Client::OrdersController < ApplicationController
   end
 
   def update
-    raise
+    @order.status = params[:status]
     if @order.update(order_params)
+      @order = set_status(@order)
       redirect_to client_order_path(@order)
     else
       render :edit
@@ -95,11 +104,38 @@ class Client::OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:company_id, :item_id, :transport_id, :remark, :user_id, :other_taxes, :misc_charges, :address_id)
+    params.require(:order).permit(:company_id, :item_id, :transport_id, :remark, :user_id, :other_taxes, :misc_charges, :address_id, :status, :invoice_number, :invoiced_date, :lr, :freight, :dispatched_date, :released_date)
   end
 
   def set_order
     @order = Order.find(params[:id])
+  end
+
+  def set_status(o)
+    if [o.invoiced_date, o.invoice_number].all?
+      o.status = "invoiced"
+      if [o.dispatched_date, o.lr].all?
+        o.status = "dispatched"
+        if [o.released_date].all?
+          o.status = "released"
+        end
+      end
+    end
+    return o
+  end
+
+  def status_rollback(o)
+    status = STATUS.index(@order.status) + 1
+    if status == 4
+      o.invoiced_date = nil
+      o.invoice_number = nil
+    elsif status == 5
+      o.dispatched_date = nil
+      o.lr = nil
+    elsif status == 6
+      o.released_date = nil
+    end
+    return o
   end
 
 end

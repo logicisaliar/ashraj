@@ -4,7 +4,7 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.references :company, foreign_key: true
       t.references :item, foreign_key: true
       t.references :transport, foreign_key: true
-      t.integer :status
+      t.integer :status, default: "pending"
       t.date :completed_date
       t.date :confirmed_date
       t.date :packed_date
