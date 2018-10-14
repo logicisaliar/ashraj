@@ -30,6 +30,8 @@ class LinesController < ApplicationController
 
   def index
     @lines = Line.where(order_id: params[:format])
+    @products = class_label(Product.all)
+    @packings = packing_label(Packing.all)
   end
 
   private

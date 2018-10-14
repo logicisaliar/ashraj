@@ -1,11 +1,8 @@
 <% if @order.company.nil? %>
-  <%= render "company", order: @order %>
+  <%= render "/shared/company", order: @order %>
 <% elsif @order.company.addresses.length > 1 %>
-  <%= render "address", order: @order %>
+  <%= render "/shared/address", order: @order %>
 <% elsif @order.lines.length == 0 %>
-
-  <%# @products = class_label(Product.all) %>
-  <%# @packings = packing_label(Packing.all) %>
   <% redirect_to new_line_path %>
 <% else %>
   YOOOOOOOO

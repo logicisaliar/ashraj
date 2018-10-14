@@ -1,6 +1,1 @@
-<% @lines.each do |l| %>
-<%= l.order.company.name %>
-<%= l.item.product.name %>
-<% end %>
-<%= link_to "Order Complete", client_orders_path %>
-<%= link_to "Add more items", new_client_order_item_path(@lines[0].order), order_id: @lines[0].order_id, address_id: @lines[0].order.address_id %>
+<%= render "/shared/new_item_form", item: Item.new %>
