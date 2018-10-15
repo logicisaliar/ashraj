@@ -10,11 +10,11 @@
     </div>
   </div>
   <% if @order.status == "packed" %>
-  <%= render "packed", lines: @lines, order: @order %>
+  <%= render "/shared/packed", lines: @lines, order: @order %>
   <% elsif @order.status == "invoiced" %>
-  <%= render "invoiced", lines: @lines, order: @order %>
+  <%= render "/shared/invoiced", lines: @lines, order: @order %>
   <% elsif @order.status == "dispatched" %>
-  <%= render "dispatched", lines: @lines, order: @order %>
+  <%= render "/shared/dispatched", lines: @lines, order: @order %>
   <% end %>
   <!-- Change Order Status -->
   <br>
@@ -27,4 +27,4 @@
   <% end %>
 </div>
   <!-- List of Lines in the Order -->
-  <%= render "order_details", lines: @lines, order: @order %>
+  <%= render "/shared/order_details", lines: @lines, order: @order %>

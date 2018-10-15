@@ -4,7 +4,7 @@
   <% order_id = params[:format] %>
 <% end %>
 <h1>Please add new Item</h1>
-<%= simple_form_for item, url: lines_path do |f| %>
+<%= simple_form_for item, url: lines_path, html: { class: 'form-inline' } do |f| %>
 <%= f.error_notification %>
 <%= f.input :product_id, collection: @products, label_method: :second, value_method: :first  %>
 <%= f.input :packing_id, collection: @packings, label_method: :second, value_method: :first  %>
@@ -15,4 +15,8 @@
 <%= f.button :submit %>
 <% end %>
 <br>
+  <% lines = Line.where(order_id: order_id) %>
+  <%= render "/shared/order_details", lines: lines, order: order_id %>
+<%= link_to "Order Complete", client_orders_path %>
+
 <%#= f.text_field :discount, id: "item-id" %>

@@ -9,9 +9,10 @@ class Client::ItemsController < ApplicationController
   end
 
   def create
+    raise
     @item = Item.new(item_params)
     if @item.save!
-      redirect_to lines_path
+      redirect_to new_line_path(params[:order_id])
     else
       render :new
       # calculate amount and quanity
