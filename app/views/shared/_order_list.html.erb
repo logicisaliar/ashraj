@@ -12,18 +12,18 @@
     </tr>
   </thead>
   <tbody>
-    <% lines.each do |l| %>
+    <% items.each do |i| %>
     <tr>
-      <% product = l.item.product %>
-      <% packing = l.item.packing %>
+      <% product = i.product %>
+      <% packing = i.packing %>
       <td><%= product.name %></td>
-      <td><%= l.item.quantity %></td>
+      <td><%= i.quantity %></td>
       <td><%= packing.pack_size %></td>
-      <td><%= l.item.quantity * packing.pack_size %> <%= product.unit %></td>
+      <td><%= i.quantity * packing.pack_size %> <%= product.unit %></td>
       <td><%= product.mrp %></td>
-      <td><%= product.mrp * l.item.quantity * packing.pack_size %></td>
+      <td><%= product.mrp * i.quantity * packing.pack_size %></td>
       <td><%= product.discount %></td>
-      <td><%= product.gst * product.mrp * l.item.quantity * packing.pack_size %></td>
+      <td><%= product.gst * product.mrp * i.quantity * packing.pack_size %></td>
     </tr>
     <% end %>
   </tbody>

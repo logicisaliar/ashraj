@@ -18,8 +18,8 @@ class Client::OrdersController < ApplicationController
     else
       @addresses = address_label(Address.where(company: @order.company).all)
     end
-    if @order.save
-      redirect_to new_line_path(@order)
+    if @order.save!
+      redirect_to new_client_order_item_path(@order)
     else
       render :new
     end
@@ -33,7 +33,7 @@ class Client::OrdersController < ApplicationController
   end
 
   def show
-    @lines = Line.where(order_id: @order.id).all
+    @items = Item.where(order_id: @order.id).all
     status_up = params[:status_up]
     status_down = params[:status_down]
     @order = set_status(@order)

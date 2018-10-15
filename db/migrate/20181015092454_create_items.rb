@@ -7,6 +7,8 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.references :packing, foreign_key: true
       t.float :amount
       t.float :price
+      t.references :order, foreign_key: true
+
 
       t.timestamps
     end

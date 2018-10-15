@@ -2,8 +2,8 @@
   <%= render "/shared/company", order: @order %>
 <% elsif @order.company.addresses.length > 1 %>
   <%= render "/shared/address", order: @order %>
-<% elsif @order.lines.length == 0 %>
-  <% redirect_to new_line_path %>
+<% elsif @order.items.length == 0 %>
+  <% redirect_to new_client_order_item_path(@order) %>
 <% else %>
   YOOOOOOOO
 <% end %>

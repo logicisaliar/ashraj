@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_08_160140) do
+ActiveRecord::Schema.define(version: 2018_10_15_092454) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,19 +78,12 @@ ActiveRecord::Schema.define(version: 2018_10_08_160140) do
     t.bigint "packing_id"
     t.float "amount"
     t.float "price"
+    t.bigint "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_items_on_order_id"
     t.index ["packing_id"], name: "index_items_on_packing_id"
     t.index ["product_id"], name: "index_items_on_product_id"
-  end
-
-  create_table "lines", force: :cascade do |t|
-    t.bigint "order_id"
-    t.bigint "item_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["item_id"], name: "index_lines_on_item_id"
-    t.index ["order_id"], name: "index_lines_on_order_id"
   end
 
   create_table "mails", force: :cascade do |t|
@@ -117,7 +110,6 @@ ActiveRecord::Schema.define(version: 2018_10_08_160140) do
 
   create_table "orders", force: :cascade do |t|
     t.bigint "company_id"
-    t.bigint "item_id"
     t.bigint "transport_id"
     t.integer "status", default: 0
     t.date "completed_date"
@@ -151,7 +143,6 @@ ActiveRecord::Schema.define(version: 2018_10_08_160140) do
     t.datetime "updated_at", null: false
     t.index ["address_id"], name: "index_orders_on_address_id"
     t.index ["company_id"], name: "index_orders_on_company_id"
-    t.index ["item_id"], name: "index_orders_on_item_id"
     t.index ["transport_id"], name: "index_orders_on_transport_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
@@ -250,17 +241,15 @@ ActiveRecord::Schema.define(version: 2018_10_08_160140) do
   add_foreign_key "addresses", "companies"
   add_foreign_key "addresses", "pincodes"
   add_foreign_key "cities", "states"
+  add_foreign_key "items", "orders"
   add_foreign_key "items", "packings"
   add_foreign_key "items", "products"
-  add_foreign_key "lines", "items"
-  add_foreign_key "lines", "orders"
   add_foreign_key "mails", "companies"
   add_foreign_key "mails", "users"
   add_foreign_key "numbers", "companies"
   add_foreign_key "numbers", "users"
   add_foreign_key "orders", "addresses"
   add_foreign_key "orders", "companies"
-  add_foreign_key "orders", "items"
   add_foreign_key "orders", "transports"
   add_foreign_key "orders", "users"
   add_foreign_key "pincodes", "cities"

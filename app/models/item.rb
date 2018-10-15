@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
   belongs_to :product
-  has_many :orders
   belongs_to :packing
+  belongs_to :order, optional: true
 end
