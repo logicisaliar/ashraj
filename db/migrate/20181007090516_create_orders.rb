@@ -2,7 +2,6 @@ class CreateOrders < ActiveRecord::Migration[5.2]
   def change
     create_table :orders do |t|
       t.references :company, foreign_key: true
-      t.references :item, foreign_key: true
       t.references :transport, foreign_key: true
       t.integer :status, default: "pending"
       t.date :completed_date

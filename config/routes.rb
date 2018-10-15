@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   end
 end
 get '/client/order/get_address', to: 'client/orders#get_address'
-resources :lines
 resources :items, only: [:show, :edit, :update, :destroy]
 resources :types, only: [:index]
 resources :states, only: [:index]

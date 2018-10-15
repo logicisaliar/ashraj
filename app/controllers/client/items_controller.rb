@@ -9,10 +9,10 @@ class Client::ItemsController < ApplicationController
   end
 
   def create
-    raise
     @item = Item.new(item_params)
+    @item.order_id = params[:order_id]
     if @item.save!
-      redirect_to new_line_path(params[:order_id])
+      redirect_to client_order_items_path(params[:order_id])
     else
       render :new
       # calculate amount and quanity
@@ -20,20 +20,12 @@ class Client::ItemsController < ApplicationController
   end
 
   def index
-    @items = Item.all
+    @items = Item.where(order_id: params[:format])
+    @products = class_label(Product.all)
+    @packings = packing_label(Packing.all)
   end
 
   private
-
-  def csv_read(filename)
-    csv_text = File.read(Rails.root.join('lib', 'seeds', "#{filename}.csv"))
-    csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
-    csv.each do |row|
-      t = Item.new
-      t.name = row['name']
-      t.save
-    end
-  end
 
   def class_label(cls)
     return_array = []

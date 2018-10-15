@@ -1,11 +1,1 @@
-<h1>Items</h1>
-<% @items.each do |i| %>
-<%= link_to i.product.name, item_path(i) %>
-<%= i.packing.pack_size %>
-<%= i.quantity %>
-<%= link_to "Edit", edit_item_path(i) %>
-<%= link_to "Delete", item_path(i), method: :delete %>
-<br>
-<% end %>
-<%= link_to "Add more items", new_client_order_item_path(params[:order_id]) %>
-<%= link_to "Order Complete", client_orders_path %>
+<%= render "/shared/new_item_form", item: Item.new %>
