@@ -10,16 +10,16 @@ class Client::OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
+    @transports = transport_array(@order)
     unless params[:company].nil?
       @order.company = Company.find(params[:company])
     end
-    if @order.company.addresses.length == 1
-      @order.address = @order.company.addresses[0]
-    else
-      @addresses = address_label(Address.where(company: @order.company).all)
+    unless params[:transport].nil?
+      @order.transport = Transport.find(params[:transport])
     end
-    if @order.save!
-      redirect_to new_client_order_item_path(@order)
+    @addresses = address_label(Address.where(company: @order.company))
+    if @order.save
+      redirect_to new_client_order_item_path(@order, company: @order.company)
     else
       render :new
     end
@@ -37,15 +37,22 @@ class Client::OrdersController < ApplicationController
     status_up = params[:status_up]
     status_down = params[:status_down]
     @order = set_status(@order)
+    status = STATUS.index(@order.status) + 1
     unless status_down.nil?
       @order.status = STATUS[STATUS.index(status_down) - 1]
-      if STATUS.index(@order.status) >= 3
-        @order = status_rollback(@order)
-      end
+      @order = status_rollback(@order)
     end
     unless status_up.nil?
-      @order.status = STATUS[STATUS.index(status_up) + 1]
+      if status == 1
+        @order.completed_date = Date.today
+      elsif status == 2
+        @order.confirmed_date = Date.today
+      elsif status == 3
+        @order.packed_date = Date.today
+      end
+      @order.status = STATUS[status]
     end
+    @order = calculations(@order)
     @order.save!
   end
 
@@ -75,30 +82,11 @@ class Client::OrdersController < ApplicationController
 
   private
 
-  def class_label(cls)
-    return_array = []
-    cls.each do |p|
-      return_array << [p.id, p.name]
-    end
-    return_array
-  end
 
   def address_label(cls)
     return_array = []
     cls.each do |p|
       return_array << [p.id, p.street]
-    end
-    return_array
-  end
-
-  def packing_label(cls)
-    return_array = []
-    cls.each do |p|
-      if p.sample
-        a = "#{p.pack_size} (Sample)"
-      else a = p.pack_size
-      end
-      return_array << [p.id, a]
     end
     return_array
   end
@@ -112,12 +100,21 @@ class Client::OrdersController < ApplicationController
   end
 
   def set_status(o)
-    if [o.invoiced_date, o.invoice_number].all?
-      o.status = "invoiced"
-      if [o.dispatched_date, o.lr].all?
-        o.status = "dispatched"
-        if [o.released_date].all?
-          o.status = "released"
+    if [o.completed_date].all?
+      o.status = "completed"
+      if [o.confirmed_date].all?
+        o.status = "confirmed"
+        if [o.packed_date].all?
+          o.status = "packed"
+          if [o.invoiced_date, o.invoice_number].all?
+            o.status = "invoiced"
+            if [o.dispatched_date, o.lr].all?
+              o.status = "dispatched"
+              if [o.released_date].all?
+                o.status = "released"
+              end
+            end
+          end
         end
       end
     end
@@ -126,7 +123,13 @@ class Client::OrdersController < ApplicationController
 
   def status_rollback(o)
     status = STATUS.index(@order.status) + 1
-    if status == 4
+    if status == 1
+      o.completed_date = nil
+    elsif status == 2
+      o.confirmed_date = nil
+    elsif status == 3
+      o.packed_date = nil
+    elsif status == 4
       o.invoiced_date = nil
       o.invoice_number = nil
     elsif status == 5
@@ -138,4 +141,10 @@ class Client::OrdersController < ApplicationController
     return o
   end
 
+
+
+  def transport_array(o)
+    #Filter Tranport list depending on previous orders of the company and if 0, only courier companies
+    return Transport.all
+  end
 end

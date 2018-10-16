@@ -1,0 +1,4 @@
+<%= render "/shared/totals_card", title: "Total (Excl. Tax)", value: order.invoice_subtotal %>
+<%= render "/shared/totals_card", title: "Total (Incl. Tax)", value: order.invoice_amount %>
+<%= render "/shared/totals_card", title: "Transport", value: order.transport.name %>
+<%= render "/shared/totals_card", title: "Remark", value: order.remark %>

@@ -1,12 +1,15 @@
 class CreateItems < ActiveRecord::Migration[5.2]
   def change
     create_table :items do |t|
-      t.float :quantity
+      t.integer :quantity
       t.references :product, foreign_key: true
       t.float :discount
-      t.references :packing, foreign_key: true
       t.float :amount
-      t.float :price
+      t.float :mrp
+      t.float :rate
+      t.float :gst
+      t.float :total
+      t.references :packing, foreign_key: true
       t.references :order, foreign_key: true
 
 

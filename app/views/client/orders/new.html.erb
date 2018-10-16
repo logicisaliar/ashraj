@@ -1,5 +1,7 @@
 <% if @order.company.nil? %>
   <%= render "/shared/company", order: @order %>
+<% elsif @order.transport.nil? %>
+  <%= render "/shared/other_details", order: @order %>
 <% elsif @order.company.addresses.length > 1 %>
   <%= render "/shared/address", order: @order %>
 <% elsif @order.items.length == 0 %>

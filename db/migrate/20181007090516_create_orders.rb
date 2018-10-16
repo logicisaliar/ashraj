@@ -17,16 +17,16 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.float :quantity_l
       t.string :lr
       t.float :freight
-      t.float :courier_charge
+      t.float :courier_charge, default: 0
       t.float :igst
       t.float :cgst
       t.float :sgst
-      t.string :remark
+      t.string :remark, default: "N/A"
       t.references :user, foreign_key: true
       t.string :lr_photo
       t.string :salesperson
-      t.float :other_taxes
-      t.float :misc_charges
+      t.float :other_taxes, default: 0
+      t.float :misc_charges, default: 0
       t.references :address, foreign_key: true
       t.float :sample_kg
       t.float :sample_l
