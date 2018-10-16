@@ -2,13 +2,14 @@
   <thead>
     <tr>
       <th>Product Name</th>
-      <th>Quantity</th>
       <th>Packing</th>
       <th>Total</th>
       <th>MRP</th>
+      <th>Rate</th>
       <th>Amount</th>
       <th>Discount</th>
       <th>GST</th>
+      <th>Options</th>
     </tr>
   </thead>
   <tbody>
@@ -16,14 +17,24 @@
     <tr>
       <% product = i.product %>
       <% packing = i.packing %>
-      <td><%= product.name %></td>
-      <td><%= i.quantity %></td>
-      <td><%= packing.pack_size %></td>
-      <td><%= i.quantity * packing.pack_size %> <%= product.unit %></td>
-      <td><%= product.mrp %></td>
-      <td><%= product.mrp * i.quantity * packing.pack_size %></td>
-      <td><%= product.discount %></td>
-      <td><%= product.gst * product.mrp * i.quantity * packing.pack_size %></td>
+      <% mrp = product.mrp - packing.rebate %>
+      <% rate = mrp * (100 - product.discount) / 100 %>
+      <% product_name = product.name %>
+      <% quantity = i.quantity %>
+      <% pack_size = packing.pack_size %>
+      <% total = quantity * pack_size %>
+      <% amount = rate * total %>
+      <% discount = product.discount %>
+      <% product_gst = product.gst * amount / 100 %>
+      <td><%= product_name %></td>
+      <td><%= i.quantity %> x <%= pack_size %></td>
+      <td><%= i.total %> <%= product.unit %></td>
+      <td><%= i.mrp %></td>
+      <td><%= i.rate %></td>
+      <td><%= i.amount %></td>
+      <td><%= i.discount %></td>
+      <td><%= i.gst %></td>
+      <td><%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_item_path(i), order: i.order.id %> |||  <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, root_path %></td>
     </tr>
     <% end %>
   </tbody>

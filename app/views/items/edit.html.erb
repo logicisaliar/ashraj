@@ -1,0 +1,11 @@
+<%= simple_form_for @item, url: item_path(@item), html: { class: 'form-inline' } do |f| %>
+<%= f.error_notification %>
+<%= f.input :product_id, collection: @products, label_method: :second, value_method: :first  %>
+<%= f.input :packing_id, collection: @packings, label_method: :second, value_method: :first  %>
+<%= f.input :quantity %>
+<div class="hidden">
+  <%= f.input_field "Pass Params", name: "order_id", value: @item.order.id %>
+</div>
+<%= f.button :submit, label: "Add Item", class: "btn btn-success" %>
+<% end %>
+<br>

@@ -72,12 +72,15 @@ ActiveRecord::Schema.define(version: 2018_10_15_092454) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.float "quantity"
+    t.integer "quantity"
     t.bigint "product_id"
     t.float "discount"
-    t.bigint "packing_id"
     t.float "amount"
-    t.float "price"
+    t.float "mrp"
+    t.float "rate"
+    t.float "gst"
+    t.float "total"
+    t.bigint "packing_id"
     t.bigint "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -125,16 +128,16 @@ ActiveRecord::Schema.define(version: 2018_10_15_092454) do
     t.float "quantity_l"
     t.string "lr"
     t.float "freight"
-    t.float "courier_charge"
+    t.float "courier_charge", default: 0.0
     t.float "igst"
     t.float "cgst"
     t.float "sgst"
-    t.string "remark"
+    t.string "remark", default: "N/A"
     t.bigint "user_id"
     t.string "lr_photo"
     t.string "salesperson"
-    t.float "other_taxes"
-    t.float "misc_charges"
+    t.float "other_taxes", default: 0.0
+    t.float "misc_charges", default: 0.0
     t.bigint "address_id"
     t.float "sample_kg"
     t.float "sample_l"

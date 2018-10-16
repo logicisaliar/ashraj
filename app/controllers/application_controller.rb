@@ -61,4 +61,85 @@ class ApplicationController < ActionController::Base
     process << phrase.titlecase
     return process
   end
+
+  def calculations (o)
+    o.order_num = ((Date.today.year % 2000) * 10000000 ) + ((Date.today.month) * 100000) + ((Date.today.day) * 1000) + 1
+    o.invoice_subtotal = 0
+    o.quantity_kg = 0
+    o.quantity_l = 0
+    o.sample_kg = 0
+    o.sample_l = 0
+    o.igst = 0
+    o.cgst = 0
+    o.sgst = 0
+    gst = 0
+    o.items.each do |i|
+      if i.packing.sample
+        if i.product.unit = "Ltr"
+          o.sample_l += i.total
+        else
+          o.sample_kg += i.total
+        end
+      else
+        if i.product.unit = "Ltr"
+          o.quantity_l += i.total
+        else
+          o.quantity_kg += i.total
+        end
+        gst += i.product.gst * i.rate * i.total / 100
+        o.invoice_subtotal += i.rate * i.total
+        o.invoice_amount = o.invoice_subtotal + gst
+      end
+      unless o.courier_charge == 0
+        gst += o.courier_charge * 0.18
+      end
+      address_id = o.company.addresses.where(kind: 1).ids[0]
+      address = Address.find(address_id)
+      if address.pincode.city.state.code == 27
+        o.cgst = gst / 2
+        o.sgst = gst / 2
+      else
+        o.igst = gst
+      end
+    end
+    o
+  end
+
+  def class_label(cls)
+    return_array = []
+    cls.each do |p|
+      return_array << [p.id, p.name]
+    end
+    return_array
+  end
+
+  def packing_label(cls)
+    return_array = []
+    cls.each do |p|
+      if p.sample
+        a = "#{p.pack_size} (Sample)"
+      else a = p.pack_size
+      end
+      return_array << [p.id, a]
+    end
+    return_array
+  end
+
+  def calculate_item(i)
+    i.total = i.quantity * i.packing.pack_size
+    if i.packing.sample
+      i.mrp = 0
+      i.rate = 0
+      i.gst = 0
+      i.amount = 0
+      i.discount = 0
+    else
+      i.mrp = i.product.mrp - i.packing.rebate
+      i.rate = i.mrp * (100 - i.discount) / 100
+      i.amount = i.total * i.rate
+      i.gst = i.amount * 0.18
+    end
+    i
+  end
+
 end

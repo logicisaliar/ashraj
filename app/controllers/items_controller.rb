@@ -12,7 +12,9 @@ class ItemsController < ApplicationController
 
   def update
     @item.update(item_params)
-    redirect_to items_path
+    @item = calculate_item(@item)
+    @item.save
+    redirect_to client_order_items_path(params[:order_id])
   end
 
   def destroy
