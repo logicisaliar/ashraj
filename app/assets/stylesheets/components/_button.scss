@@ -11,8 +11,39 @@
   color: black;
 }
 
-.btn-a {
+.btn-default {
   display: block;
+  flex: 1 0 auto;
+  margin: 10px;
+  justify-content: center;
+  background-color: rgba($blue, 0.5);
+  color: $black;
+  border-radius: 20px;
+}
+.btn-default:hover {
+  background-color: rgba($blue, 0.8);
+  color: $white;
+}
+
+.btn-top-m {
+  margin-top: 20px;
+}
+
+.btn-home {
+  width: 500px;
+  height: 50px;
+  align-item: center;
+  display: block;
+  margin: 10px;
+  justify-content: center;
+  background-color: rgba($blue, 0.5);
+  color: $white;
+  border-radius: 20px;
+}
+
+.btn-submit {
+  display: block;
+  flex: 1 0 auto;
   margin: 10px;
   justify-content: center;
   background-color: rgba($blue, 0.5);
@@ -20,8 +51,12 @@
   border-radius: 20px;
 
 }
-.btn-a:hover {
+.btn-submit:hover {
   background-color: rgba($blue, 0.8);
   color: $white;
 }
 
+.btn-status {
+  justify-content: space-around;
+  margin-bottom: 20px;
+}

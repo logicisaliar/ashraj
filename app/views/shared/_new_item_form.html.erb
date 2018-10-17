@@ -4,10 +4,13 @@
 <% order_id = params[:format] %>
 <% end %>
 <div class="container">
-<%= render "/shared/item_form", item: Item.new, order: Order.find(order_id) %>
-<%= link_to "Order Complete", client_orders_path, class: "btn btn-success" %>
-<% items = Item.where(order_id: order_id) %>
-<%= render "/shared/order_details", items: items, order: order_id %>
+  <%= render "/shared/item_form", item: Item.new, order: Order.find(order_id) %>
+  <br>
+  <%= link_to "Order Complete", client_orders_path, class: "col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4 btn btn-success" %>
+  <br>
+  <br>
+  <% items = Item.where(order_id: order_id) %>
+  <%= render "/shared/order_details", items: items, order: order_id %>
 </div>
 
 <%#= f.text_field :discount, id: "item-id" %>

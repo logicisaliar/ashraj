@@ -2,8 +2,7 @@ class Client::OrdersController < ApplicationController
 
   skip_before_action :authenticate_user!
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-  #             0           1             2         3           4           5             6
-  STATUS = ["pending", "completed", "confirmed", "packed", "invoiced", "dispatched", "released"]
+
   def new
     @order = Order.new
   end
@@ -37,6 +36,8 @@ class Client::OrdersController < ApplicationController
     status_up = params[:status_up]
     status_down = params[:status_down]
     @order = set_status(@order)
+    @number = truncate_num(Number.where(company: @order.company).to_a, 30)
+    @mail = truncate_mail(Mail.where(company: @order.company).to_a, 30)
     status = STATUS.index(@order.status) + 1
     unless status_down.nil?
       @order.status = STATUS[STATUS.index(status_down) - 1]

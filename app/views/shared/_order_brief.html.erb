@@ -1,4 +1,5 @@
-<br>
-<%= link_to '<i class="fas fa-long-arrow-alt-left"></i> Return to all orders'.html_safe, client_orders_path %>
-<h1>Order Number - <%= order.order_num %></h1>
-<h2>Order Status - <%= order.status %></h2>
+<div class="card-default card-order-brief">
+  <%= link_to '<i class="fas fa-long-arrow-alt-left"></i> Return to all orders'.html_safe, client_orders_path, class: "btn-default" %>
+  <h1>Order Number - <%= order.order_num %></h1>
+  <h2>Order Status - <%= order.status %></h2>
+</div>

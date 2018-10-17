@@ -1,10 +1,12 @@
-<%= simple_form_for @order, url: client_order_path(@order), html: { class: 'form-inline' } do |f| %>
-<%= f.error_notification %>
+<div class="form-default">
+  <%= simple_form_for @order, url: client_order_path(@order), html: { class: 'form-inline' } do |f| %>
+  <%= f.error_notification %>
   <%= f.input :lr %>
   <%= f.input :dispatched_date %>
   <%= f.input :freight %>
   <div class="hidden">
-  <%= f.input_field "Pass Params", name: "status", value: @order.status %>
+    <%= f.input_field "Pass Params", name: "status", value: @order.status %>
+  </div>
+  <%= f.button :submit, class: "btn-submit" %>
+  <% end %>
 </div>
-  <%= f.button :submit, class: "btn btn-success" %>
-<% end %>

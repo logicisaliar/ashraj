@@ -3,7 +3,7 @@
 <%= simple_form_for company do |f| %>
 <%= f.error_notification %>
   <%= f.input :name %>
-  <%= f.input :kind, collection: ["Trader", "User", "On Account"] %>
+  <%= f.input :kind, collection: @company_kinds, label_method: :second, value_method: :first %>
   <%= f.input :pan_number, label: "PAN" %>
   <%= f.input :gst_end, label: "GST (last 3 digits)" %>
   <%= f.input :spl_instructions, label: "Special Instructions (if any)"%>

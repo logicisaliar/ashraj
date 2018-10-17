@@ -1,8 +1,19 @@
 <div class="container">
-  <%= link_to '<i class="fas fa-plus"></i> Add New Order'.html_safe, new_client_order_path, class: "btn btn-a" %>
-  <% @orders.each do |o| %>
-  <div class="row">
+  <%= link_to '<i class="fas fa-plus"></i> Add New Company'.html_safe, new_company_path, class: "btn btn-default btn-top-m col-xs-10 col-md-4 col-xs-offset-1 col-md-offset-4" %>
+  <br>
+  <br>
+  <br>
+  <%= link_to '<i class="fas fa-plus"></i> Add New Order'.html_safe, new_client_order_path, class: "btn btn-default btn-top-m col-xs-10 col-md-4 col-xs-offset-1 col-md-offset-4" %>
+  <br>
+  <br>
+  <br>
+  <% if @orders.nil? %>
+  <h2>Sorry, you have no previous orders to show</h2>
+  <% else %>
+  <div class="vertical">
+    <% @orders.each do |o| %>
     <%= render "/shared/order_card", items: @items, o: o %>
+    <% end %>
+    <% end %>
   </div>
-  <% end %>
 </div>
