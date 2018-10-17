@@ -2,7 +2,6 @@
 <%= f.error_notification %>
   <%= f.input :address_id, collection: @addresses, label_method: :second, value_method: :first %>
   <%= f.input :transport_id, collection: @transports %>
-  <%= f.input :spl_instructions %>
 
   <div class="hidden">
   <%= f.input_field "", name: "company", value: order.company.id %>

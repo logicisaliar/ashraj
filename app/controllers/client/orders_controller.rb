@@ -43,9 +43,7 @@ class Client::OrdersController < ApplicationController
       @order = status_rollback(@order)
     end
     unless status_up.nil?
-      if status == 1
-        @order.completed_date = Date.today
-      elsif status == 2
+      if status == 2
         @order.confirmed_date = Date.today
       elsif status == 3
         @order.packed_date = Date.today
@@ -92,7 +90,7 @@ class Client::OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:company_id, :item_id, :transport_id, :remark, :user_id, :other_taxes, :misc_charges, :address_id, :status, :invoice_number, :invoiced_date, :lr, :freight, :dispatched_date, :released_date)
+    params.require(:order).permit(:company_id, :item_id, :transport_id, :remark, :user_id, :other_taxes, :misc_charges, :address_id, :status, :invoice_number, :invoiced_date, :lr, :freight, :dispatched_date, :released_date, :salesperson)
   end
 
   def set_order
@@ -100,7 +98,7 @@ class Client::OrdersController < ApplicationController
   end
 
   def set_status(o)
-    if [o.completed_date].all?
+    if [o.salesperson].all?
       o.status = "completed"
       if [o.confirmed_date].all?
         o.status = "confirmed"
@@ -118,6 +116,7 @@ class Client::OrdersController < ApplicationController
         end
       end
     end
+    o.completed_date = Date.today
     return o
   end
 
@@ -125,6 +124,7 @@ class Client::OrdersController < ApplicationController
     status = STATUS.index(@order.status) + 1
     if status == 1
       o.completed_date = nil
+      o.salesperson = nil
     elsif status == 2
       o.confirmed_date = nil
     elsif status == 3
@@ -135,6 +135,7 @@ class Client::OrdersController < ApplicationController
     elsif status == 5
       o.dispatched_date = nil
       o.lr = nil
+      o.freight = nil
     elsif status == 6
       o.released_date = nil
     end

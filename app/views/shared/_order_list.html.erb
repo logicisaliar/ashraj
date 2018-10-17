@@ -34,7 +34,8 @@
       <td><%= i.amount %></td>
       <td><%= i.discount %></td>
       <td><%= i.gst %></td>
-      <td><%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_item_path(i), order: i.order.id %> |||  <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, root_path %></td>
+      <td><%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_item_path(i), order: i.order.id %> |||  <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, item_path(i), data: { confirm: "Are you sure?" }, method: :delete, order: i.order.id %>
+      </td>
     </tr>
     <% end %>
   </tbody>

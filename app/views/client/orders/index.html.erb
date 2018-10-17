@@ -1,5 +1,5 @@
 <div class="container">
-  <%= link_to '<i class="fas fa-plus"></i> Add New Order'.html_safe, new_client_order_path, class: "btn" %>
+  <%= link_to '<i class="fas fa-plus"></i> Add New Order'.html_safe, new_client_order_path, class: "btn btn-a" %>
   <% @orders.each do |o| %>
   <div class="row">
     <%= render "/shared/order_card", items: @items, o: o %>

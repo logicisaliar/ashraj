@@ -10,7 +10,9 @@
     </div>
   </div>
   <!-- Order Details for Status Up -->
-  <% if @order.status == "packed" %>
+  <% if @order.status == "pending" %>
+  <%= render "/shared/pending", lines: @lines, order: @order %>
+  <% elsif @order.status == "packed" %>
   <%= render "/shared/packed", lines: @lines, order: @order %>
   <% elsif @order.status == "invoiced" %>
   <%= render "/shared/invoiced", lines: @lines, order: @order %>
@@ -19,7 +21,7 @@
   <% end %>
   <!-- Change Order Status -->
   <br>
-  <% if @order.status == "pending" || @order.status == "completed" || @order.status == "confirmed" %>
+  <% if @order.status == "completed" || @order.status == "confirmed" %>
   <%= link_to "Status Up", client_order_path(@order, status_up: @order.status), class: "btn btn-success" %>
   <% end %>
   <br>
