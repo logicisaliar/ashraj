@@ -1,13 +1,9 @@
 <div class="container">
   <div class="order-top">
-    <div class="card">
-      <!-- Order Number and Status -->
-      <%= render '/shared/order_brief', order: @order %>
-    </div>
-    <div class="card">
-      <!-- Company card -->
-      <%= render '/shared/company_card', company: @order.company %>
-    </div>
+    <!-- Order Number and Status -->
+    <%= render '/shared/order_brief', order: @order %>
+    <!-- Company card -->
+    <%= render '/shared/company_card', company: @order.company %>
   </div>
   <!-- Order Details for Status Up -->
   <% if @order.status == "pending" %>

@@ -1,7 +1,11 @@
 .order-top {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex: 0 0 auto;
 }
 
-
+.order-brief-btn {
+  position: absolute;
+  bottom: 10px;
+  left: 2px;
+}

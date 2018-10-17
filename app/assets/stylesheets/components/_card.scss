@@ -4,7 +4,7 @@
   border: 1px solid $light-gray;
   border-radius: 2px;
   margin: 10px;
-  background-color: rgba($gray2,0.1);
+  background-color: $white;
   padding: 10px;
 }
 
@@ -21,6 +21,6 @@
 
 .card-company {
   box-shadow: 1px 1px 5px $black;
+  background-color: $white;
   margin: 10px;
-  background-color: rgba($gray2,0.1);
 }

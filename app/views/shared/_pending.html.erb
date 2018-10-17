@@ -5,6 +5,8 @@
   <%= f.input :misc_charges %>
   <%= f.input :other_taxes %>
   <%= f.input :remark %>
+  <!-- Only if Transport - kind is courier -->
+  <%= f.input :courier_charge %>
   <div class="hidden">
     <%= f.input_field "Pass Params", name: "status", value: @order.status %>
   </div>
