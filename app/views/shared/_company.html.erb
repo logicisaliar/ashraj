@@ -2,6 +2,6 @@
 <%= simple_form_for order, url: client_orders_path do |f| %>
 <%= f.error_notification %>
   <%= f.input :company_id, collection: Company.all %>
-  <%= f.button :submit, class: "btn-submit" %>
+  <%= f.button :submit, "Submit", class: "btn-submit" %>
 <% end %>
 </div>

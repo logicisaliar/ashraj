@@ -196,6 +196,9 @@ class ApplicationController < ActionController::Base
 
   def truncate_mail(arr, char)
     string = ""
+    if arr[0].nil?
+      return string
+    end
     if arr.length == 1
       string << arr[0].eadd
     else
