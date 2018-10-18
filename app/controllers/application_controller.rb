@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_user!
 
+  #             0           1             2         3           4           5             6
+  STATUS = ["pending", "completed", "confirmed", "packed", "invoiced", "dispatched", "released"]
 
   private
 
@@ -63,6 +65,7 @@ class ApplicationController < ActionController::Base
   end
 
   def calculations (o)
+
     o.order_num = ((Date.today.year % 2000) * 10000000 ) + ((Date.today.month) * 100000) + ((Date.today.day) * 1000) + 1
     o.invoice_subtotal = 0
     o.quantity_kg = 0
@@ -101,6 +104,10 @@ class ApplicationController < ActionController::Base
       else
         o.igst = gst
       end
+    end
+
+    if o.company.kind == 3
+      o.brokerage = calculate_brokerage(o)
     end
     o
   end
@@ -142,4 +149,66 @@ class ApplicationController < ActionController::Base
     i
   end
 
+  def calculate_brokerage(o)
+    b = 0
+    o.items.each do |i|
+      b += ((i.product.discount - i.discount) * i.mrp) / 100
+    end
+    o.brokerage = b
+    return o
+  end
+
+  def current_financial_year?(d)
+    t = Date.today
+    if d.year == t.year
+      if (t.month > 3 && d.month > 3) || (t.month < 4 && d.month < 4)
+        return true
+      else
+        false
+      end
+    elsif d.year == t.year - 1
+      if d.month > 3
+        return true
+      else
+        return false
+      end
+    elsif d.year == t.year + 1
+      raise
+    else
+      return false
+    end
+  end
+
+  def truncate_num(arr, char)
+    string = ""
+    if arr.length == 1
+      string << arr[0].num
+    else
+      string << arr[0].num
+      arr.each_with_index do |a, i|
+        if i > 0
+          string << ", #{arr[i].num}"
+        end
+      end
+    end
+    return string.truncate(char)
+  end
+
+  def truncate_mail(arr, char)
+    string = ""
+    if arr[0].nil?
+      return string
+    end
+    if arr.length == 1
+      string << arr[0].eadd
+    else
+      string << arr[0].eadd
+      arr.each_with_index do |a, i|
+        if i > 0
+          string << ", #{arr[i].eadd}"
+        end
+      end
+    end
+    return string.truncate(char)
+  end
 end

@@ -1,18 +1,23 @@
 <% if params[:format].nil? %>
-  <% order_id = params[:order_id] %>
+<% order_id = params[:order_id] %>
 <% else %>
-  <% order_id = params[:format] %>
+<% order_id = params[:format] %>
 <% end %>
-<h1>Please add new Item</h1>
-<%= simple_form_for item, url: client_order_items_path(order_id), html: { class: 'form-inline' } do |f| %>
-<%= f.error_notification %>
-<%= f.input :product_id, collection: @products, label_method: :second, value_method: :first  %>
-<%= f.input :packing_id, collection: @packings, label_method: :second, value_method: :first  %>
-<%= f.input :quantity %>
-<div class="hidden">
-  <%= f.input_field "Pass Params", name: "order_id", value: order_id %>
+<div class="container">
+  <div class="form-default">
+    <%= simple_form_for item, url: client_order_items_path(order_id), html: { class: 'form-inline' } do |f| %>
+    <%= f.error_notification %>
+    <%= f.input :product_id, collection: @products, label_method: :second, value_method: :first  %>
+    <%= f.input :packing_id, collection: @packings, label_method: :second, value_method: :first  %>
+    <%= f.input :quantity %>
+    <div class="hidden">
+      <%= f.input_field "Pass Params", name: "order_id", value: order_id %>
+    </div>
+    <br>
+    <br>
+    <%= f.button :submit, label: "Add Item", class: "btn btn-success" %>
+    <% end %>
+    <br>
+  </div>
 </div>
-<%= f.button :submit, label: "Add Item", class: "btn btn-success" %>
-<% end %>
-<br>
 <%#= f.text_field :discount, id: "item-id" %>

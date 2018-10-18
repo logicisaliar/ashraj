@@ -1,9 +1,9 @@
-<div class="order-card">
-<h4>
-  <strong><%= o.order_num %> - <%= o.status.capitalize %></strong>
-</h4>
+<div class="card-order col-xs-10 col-md-4 col-xs-offset-1 col-md-offset-4">
+<h5>
+  <strong><%= link_to "#{o.order_num} - #{o.status.capitalize}", client_order_path(o) %></strong>
+</h5>
 <h6>
-  <strong><%= link_to "#{o.company.name}", client_order_path(o) %></strong>
+  <strong><%= o.company.name %></strong>
 </h6>
 <h6>
   <%= o.address.pincode.city.name %>, <%= o.address.pincode.city.state.name %>

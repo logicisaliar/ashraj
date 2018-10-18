@@ -1,16 +1,14 @@
 <div class="container">
   <div class="order-top">
-    <div class="card">
-      <!-- Order Number and Status -->
-      <%= render '/shared/order_brief', order: @order %>
-    </div>
-    <div class="card">
-      <!-- Company card -->
-      <%= render '/shared/company_card', company: @order.company %>
-    </div>
+    <!-- Order Number and Status -->
+    <%= render '/shared/order_brief', order: @order %>
+    <!-- Company card -->
+    <%= render '/shared/company_card', company: @order.company %>
   </div>
   <!-- Order Details for Status Up -->
-  <% if @order.status == "packed" %>
+  <% if @order.status == "pending" %>
+  <%= render "/shared/pending", lines: @lines, order: @order %>
+  <% elsif @order.status == "packed" %>
   <%= render "/shared/packed", lines: @lines, order: @order %>
   <% elsif @order.status == "invoiced" %>
   <%= render "/shared/invoiced", lines: @lines, order: @order %>
@@ -19,13 +17,17 @@
   <% end %>
   <!-- Change Order Status -->
   <br>
-  <% if @order.status == "pending" || @order.status == "completed" || @order.status == "confirmed" %>
-  <%= link_to "Status Up", client_order_path(@order, status_up: @order.status), class: "btn btn-success" %>
+  <% if @order.status == "completed" || @order.status == "confirmed" %>
+  <div class="horizontal btn-status">
+    <%= link_to "Status Up", client_order_path(@order, status_up: @order.status), class: "btn btn-success" %>
+    <% end %>
+    <% unless @order.status == "pending" %>
+    <%= link_to "Status Down", client_order_path(@order, status_down: @order.status), class: "btn btn-danger" %>
+  </div>
   <% end %>
-  <br>
-  <% unless @order.status == "pending" %>
-  <%= link_to "Status Down", client_order_path(@order, status_down: @order.status), class: "btn btn-danger" %>
-  <% end %>
-<!-- List of Lines in the Order -->
-<%= render "/shared/order_details", items: @items, order: @order %>
+  <!-- List of Items in the Order -->
+  <%= render "/shared/order_details", items: @items, order: @order %>
+  <!-- Option to Add more Items -->
+  <%= link_to '<i class="fas fa-plus"></i> Add More Items'.html_safe, new_client_order_item_path(@order), class: "btn btn-default btn-top-m col-xs-10 col-md-4 col-xs-offset-1 col-md-offset-4" %>
+
 </div>

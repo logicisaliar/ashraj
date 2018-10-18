@@ -19,7 +19,7 @@ class ItemsController < ApplicationController
 
   def destroy
     @item.destroy
-    redirect_to items_path
+    redirect_to client_order_items_path(params[:order_id])
   end
 
   private

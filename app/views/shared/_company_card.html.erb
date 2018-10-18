@@ -1,14 +1,16 @@
-<h3><%= company.name %></h3>
-<% city = Address.where(company: company, kind: 1)[0].pincode.city %>
-<h6><%= city.name %> | <%= city.state.name %></h6>
-<% Number.where(company: company).all.each do |n| %>
-<h6><%= n.num %></h6>
-<% end %>
-<% Mail.where(company: company).all.each do |n| %>
-<h6><%= n.eadd %></h6>
-<% end %>
-<h6>
-<%= city.state.code %>
-<%= company.pan_number %>
-<%= company.gst_end %>
-</h6>
+<div class="card-default card-order-brief col-xs-4 col-xs-offset-1">
+  <h3><%= company.name %></h3>
+
+  <% city = Address.where(company: company, kind: 1)[0].pincode.city %>
+  <h6><%= city.name %> | <%= city.state.name %></h6>
+
+  <h6><%= @number %></h6>
+
+  <h6><%= @mail %></h6>
+
+  <h6>
+    <%= city.state.code %>
+    <%= company.pan_number %>
+    <%= company.gst_end %>
+  </h6>
+</div>

@@ -5,12 +5,16 @@ class CompaniesController < ApplicationController
 
   def new
     @company = Company.new
+    @company_kinds = [[1, "Trader"], [2, "User"], [3, "On Account"]]
   end
 
   def create
     @company = Company.new(company_params)
-    if @company.save!
-      redirect_to companies_path
+    @traders = Company.where(kind: "Trader")
+    unless @company.kind == 3 && @company.parent_id.nil?
+      if @company.save!
+        redirect_to companies_path
+      end
     else
       render :new
     end
@@ -41,7 +45,7 @@ class CompaniesController < ApplicationController
   private
 
   def company_params
-    params.require(:company).permit(:type, :street, :pincode_id, :company_id)
+    params.require(:company).permit(:name, :kind, :gst, :pan_number, :spl_instructions)
   end
 
   def set_company
