@@ -8,6 +8,7 @@ class NumbersController < ApplicationController
 
   def create
     @number = Number.new(number_params)
+    @number = number_type(@number)
     if @number.save!
       redirect_to numbers_path
     else
@@ -35,5 +36,10 @@ class NumbersController < ApplicationController
 
   def set_number
     @number = Number.find(params[:id])
+  end
+
+  def number_type(n)
+    raise
+
   end
 end
