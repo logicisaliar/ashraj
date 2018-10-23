@@ -36,7 +36,8 @@ class CompaniesController < ApplicationController
   end
 
   def show
-
+    @number = truncate_num(Number.where(company: @company).to_a, 30)
+    @mail = truncate_mail(Mail.where(company: @company).to_a, 30)
   end
 
   def destroy
@@ -49,7 +50,7 @@ class CompaniesController < ApplicationController
   end
 
   def set_company
-    @company = Company.find(params[:company_id])
+    @company = Company.find(params[:id])
   end
 
 end
