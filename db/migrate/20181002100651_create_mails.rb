@@ -4,7 +4,6 @@ class CreateMails < ActiveRecord::Migration[5.2]
       t.string :eadd
       t.integer :primary
       t.references :company, foreign_key: true
-      t.references :user, foreign_key: true
 
       t.timestamps
     end

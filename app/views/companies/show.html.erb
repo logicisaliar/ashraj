@@ -1,4 +1,28 @@
-<%= @company.name %>
-<%= @company.addresses.where(kind: 1)[0].street %>
-<%= @number %>
-<%= @mail %>
+<% addresses = @company.addresses %>
+<div class="card-default card-order-brief col-xs-4 col-xs-offset-1">
+  <h4>
+    <%= @company.name %>
+  </h4>
+    <% addresses.each do |address| %>
+  <h5>
+    <strong>
+    <% if address.kind == 1 %>
+    Billing:
+    <% else %>
+    Other:
+    <% end %>
+    </strong>
+    <%= address.street %>, <%= address.pincode.city.name %> - <%= address.pincode.pin %> | <%= address.pincode.city.state.name %> <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_address_path(address) %>
+  </h5>
+    <% end %>
+  <h6>
+    <%= link_to "#{@number}", numbers_path %>
+  </h6>
+  <h6>
+    <%= link_to "#{@mail}", mails_path %>
+  </h6>
+</div>
+
+  <%= link_to '<i class="fas fa-plus"></i> Add New Number'.html_safe, new_number_path, company: @company.id, class: "btn btn-default btn-top-m col-xs-10 col-md-4 col-xs-offset-1 col-md-offset-4" %>
+  <%= link_to '<i class="fas fa-plus"></i> Add New Mail'.html_safe, new_mail_path, company: @company.id, class: "btn btn-default btn-top-m col-xs-10 col-md-4 col-xs-offset-1 col-md-offset-4" %>
+  <%= link_to '<i class="fas fa-plus"></i> Add New Address'.html_safe, new_address_path, company: @company.id, class: "btn btn-default btn-top-m col-xs-10 col-md-4 col-xs-offset-1 col-md-offset-4" %>

@@ -13,7 +13,7 @@ class CompaniesController < ApplicationController
     @traders = Company.where(kind: "Trader")
     unless @company.kind == 3 && @company.parent_id.nil?
       if @company.save!
-        redirect_to companies_path
+        redirect_to company_path(@company)
       end
     else
       render :new
@@ -36,8 +36,8 @@ class CompaniesController < ApplicationController
   end
 
   def show
-    @number = truncate_num(Number.where(company: @company).to_a, 30)
-    @mail = truncate_mail(Mail.where(company: @company).to_a, 30)
+    @number = truncate_num(Number.where(company: @company).to_a, 50)
+    @mail = truncate_mail(Mail.where(company: @company).to_a, 50)
   end
 
   def destroy
