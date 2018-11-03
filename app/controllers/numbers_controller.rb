@@ -22,7 +22,7 @@ class NumbersController < ApplicationController
 
   def update
     @number.update(number_params)
-    redirect_to number_path
+    redirect_to company_path(Company.find(params[:company]))
   end
 
   def index
