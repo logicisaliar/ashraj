@@ -2,7 +2,6 @@
   <%= simple_form_for mail do |f| %>
   <%= f.error_notification %>
   <%= f.input :eadd, label: "Email" %>
-  <%= f.input :primary, collection: [:main, :other] %>
   <div class="hidden">
     <%= f.input_field "Pass Params", name: "company", value: params[:company] %>
   </div>
