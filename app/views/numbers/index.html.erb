@@ -1,7 +1,14 @@
-<% @numbers.each do |n| %>
-<%= n.num %>
-<%= n.primary %>
-<br>
-<% end %>
+<div class="card-default card-order-brief col-xs-10 col-xs-offset-1 col-md-offset-4 col-md-4 top-margin">
 
-<%= link_to "Go back", root_path %>
+  <% c = Company.find(params[:company]) %>
+  <h3>
+    <%= c.name %>
+  </h3>
+  <h4>
+    <% @numbers.each do |n| %>
+    <%= n.num %>
+    <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_number_path(n, company: c) %>
+    <% end %>
+  </h4>
+  <%= link_to "Go back", company_path(c) %>
+</div>
