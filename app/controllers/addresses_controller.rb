@@ -12,8 +12,10 @@ class AddressesController < ApplicationController
     @address = Address.new(address_params)
     @address.street = grammify(@address.street)[-1]
     @address.company = Company.find(params[:company])
-    unless @address.company.addresses.where(kind: 1).nil?
+    if @address.company.addresses.nil?
       @address.kind = 1
+    else
+      @address.kind = 2
     end
     if @address.save!
       redirect_to company_path(@address.company.id)

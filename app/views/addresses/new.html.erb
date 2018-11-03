@@ -2,9 +2,8 @@
   <%= simple_form_for @address do |f| %>
   <%= f.error_notification %>
   <%= f.input :pincode_id, collection: @pincodes, label_method: :second, value_method: :first %>
-  <%= link_to "Add new pincode", new_pincode_path %>
+  <%= link_to "Add new pincode", new_pincode_path(company: params[:company]) %>
   <%= f.input :street %>
-  <%= f.input :kind, collection: [["Billing",1],["Other/Delivery",2]] %>
   <div class="hidden">
     <%= f.input_field "Pass Params", name: "company", value: params[:company] %>
   </div>
