@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 2018_10_15_092454) do
     t.float "days", default: 30.0
     t.float "balance"
     t.float "open_balance", default: 0.0
-    t.string "spl_instructions"
+    t.text "spl_instructions"
     t.float "payment_score"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -93,22 +93,18 @@ ActiveRecord::Schema.define(version: 2018_10_15_092454) do
     t.string "eadd"
     t.integer "primary"
     t.bigint "company_id"
-    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_mails_on_company_id"
-    t.index ["user_id"], name: "index_mails_on_user_id"
   end
 
   create_table "numbers", force: :cascade do |t|
     t.string "num"
     t.integer "primary"
-    t.bigint "user_id"
     t.bigint "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_numbers_on_company_id"
-    t.index ["user_id"], name: "index_numbers_on_user_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -248,9 +244,7 @@ ActiveRecord::Schema.define(version: 2018_10_15_092454) do
   add_foreign_key "items", "packings"
   add_foreign_key "items", "products"
   add_foreign_key "mails", "companies"
-  add_foreign_key "mails", "users"
   add_foreign_key "numbers", "companies"
-  add_foreign_key "numbers", "users"
   add_foreign_key "orders", "addresses"
   add_foreign_key "orders", "companies"
   add_foreign_key "orders", "transports"
