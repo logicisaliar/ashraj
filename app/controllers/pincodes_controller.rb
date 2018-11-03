@@ -10,7 +10,7 @@ class PincodesController < ApplicationController
   def create
     @pincode = Pincode.new(pincode_params)
     if @pincode.save!
-      redirect_to pincodes_path
+      redirect_to new_address_path(company: params[:company])
     else
       render :new
     end
