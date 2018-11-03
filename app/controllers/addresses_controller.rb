@@ -6,14 +6,17 @@ class AddressesController < ApplicationController
   def new
     @address = Address.new
     @pincodes = class_label(Pincode.all.sort_by &:pin)
-    @companies = Company.all.sort_by &:name
   end
 
   def create
     @address = Address.new(address_params)
     @address.street = grammify(@address.street)[-1]
+    @address.company = Company.find(params[:company])
+    unless @address.company.addresses.where(kind: 1).nil?
+      @address.kind = 1
+    end
     if @address.save!
-      redirect_to addresses_path
+      redirect_to company_path(@address.company.id)
     else
       render :new
     end
@@ -21,14 +24,14 @@ class AddressesController < ApplicationController
 
   def edit
     @pincodes = class_label(Pincode.all.sort_by &:pin)
-    @companies = Company.all.sort_by &:name
+    # @companies = Company.all.sort_by &:name
   end
 
   def update
     if @address.update(address_params)
       @address[:street] = grammify(@address[:street])[-1]
       @address.save
-      redirect_to addresses_path
+      redirect_to company_path(@address.company.id)
     else
       render :edit
     end
@@ -52,7 +55,7 @@ class AddressesController < ApplicationController
   end
 
   def address_params
-    params.require(:address).permit(:type, :street, :pincode_id, :company_id)
+    params.require(:address).permit(:kind, :street, :pincode_id, :company_id)
   end
 
   def set_address

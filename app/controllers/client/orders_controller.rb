@@ -5,6 +5,7 @@ class Client::OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    # @companies = Company.all.sort_by &:name
   end
 
   def create
