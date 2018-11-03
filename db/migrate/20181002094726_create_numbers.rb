@@ -3,7 +3,6 @@ class CreateNumbers < ActiveRecord::Migration[5.2]
     create_table :numbers do |t|
       t.string :num
       t.integer :primary
-      t.references :user, foreign_key: true
       t.references :company, foreign_key: true
 
       t.timestamps

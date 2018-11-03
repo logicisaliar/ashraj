@@ -8,9 +8,10 @@ class NumbersController < ApplicationController
 
   def create
     @number = Number.new(number_params)
+    @number.company = Company.find(params[:company])
     @number = number_type(@number)
-    if @number.save!
-      redirect_to numbers_path
+    if @number.save
+      redirect_to company_path(@number.company.id)
     else
       render :new
     end
@@ -25,7 +26,7 @@ class NumbersController < ApplicationController
   end
 
   def index
-    @numbers = Number.all
+    @numbers = Company.find(params[:company]).numbers
   end
 
   private
@@ -39,7 +40,15 @@ class NumbersController < ApplicationController
   end
 
   def number_type(n)
-    raise
-
+    if n.num.length == 10
+      if Company.find(params[:company]).numbers.nil?
+        n.main!
+      else
+        n.other!
+      end
+    elsif n.num.length == 12
+      n.landline!
+    end
+    n
   end
 end

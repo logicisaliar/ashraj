@@ -183,7 +183,9 @@ class ApplicationController < ActionController::Base
 
   def truncate_num(arr, char)
     string = ""
-    if arr.length == 1
+    if arr[0].nil?
+      return string
+    elsif arr.length == 1
       string << arr[0].num
     else
       string << arr[0].num

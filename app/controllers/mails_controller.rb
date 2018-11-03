@@ -8,8 +8,9 @@ class MailsController < ApplicationController
 
   def create
     @mail = Mail.new(mail_params)
+    @mail.company = Company.find(params[:company])
     if @mail.save!
-      redirect_to mails_path
+      redirect_to company_path(@mail.company.id)
     else
       render :new
     end
@@ -24,7 +25,7 @@ class MailsController < ApplicationController
   end
 
   def index
-    @mails = Mail.all
+    @mails = Company.find(params[:company]).mails
   end
 
   private

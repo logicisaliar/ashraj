@@ -172,7 +172,6 @@ csv.each do |row|
   t.num = row['num']
   t.primary = row['primary']
   t.company_id = row['company_id']
-  t.user_id = row['user_id']
   t.save!
 end
 puts "Numbers created"
@@ -186,7 +185,6 @@ csv.each do |row|
   t.eadd = row['eadd']
   t.primary = row['primary']
   t.company_id = row['company_id']
-  t.user_id = row['user_id']
   t.save!
 end
 puts "Mails created"
