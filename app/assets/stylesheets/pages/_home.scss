@@ -1,3 +1,4 @@
+
 // Specific CSS for your home-page
 .banner {
   color: white;
@@ -24,7 +25,12 @@
 
 .home-contact {
   box-shadow: black 1px 1px 10px;
-  background-color: #F4F4F4;
+  background-color: $dark-blue;
+  color: $white;
+  padding: 50px;
+  padding-right: 0px;
+  padding-top: 100px;
+
 
   h3 {
     color: $red;
@@ -37,20 +43,26 @@
 
 .about-box {
   h4 {
-    color: black;
+    color: $dark-blue;
     font-style: italic;
   }
   h5 {
+    color: $dark-blue;
     font-size: 15px;
   }
-  background-color: rgba(225,225,225,0.3);
-  box-shadow: gray 1px 1px 10px;
+  background-color: rgba($yellow, 0.3);
+  box-shadow: $blue 1px 1px 10px;
   padding: 20px;
-  border: 0.5px solid rgb(225,225,225);
+  // border: 0.5px solid rgb(225,225,225);
   border-radius: 3px;
 }
 
 .about {
   justify-content: center;
   align-item: top;
+}
+
+.pink {
+  background-color: rgba($pink, 0.6);
+  padding: 30px;
 }

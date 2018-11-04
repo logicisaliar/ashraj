@@ -1,4 +1,8 @@
 <!-- <div class="top-margin-inverse"></div> -->
+<% l = 300 %>
+<% activities = "We manufacture Nature Identical Flavours and Essential Oils. The essential oils provided by us find wide scale applications in the cosmetics, flavouring and pharmaceutical industries. This is due to various therapeutic benefits and also the distinct odour and flavour of these oils. The flavours we manufacture are used in all kinds of food and edible products like cakes, ice creams, and sweets, to name a few." %>
+<% profile = "Currently, the company is dealing with over a 100 clients in varying volumes of work across all categories. The vision is to reliably provide consistent and affordable products with complete ease of operations. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi voluptate enim nisi aliquid nobis sint temporibus odio magnam nesciunt earum modi officiis, ullam dolore, dicta asdkja sdkaj" %>
+<% history = "Ashraj Industries is a young and quickly growing company, established only in 2011. This is a family run business with 4 key members. The proprietor, Mr. Rajesh Shah, established this company after 20 years of experience with Venus Trading Co., (established by his brother, Mr. Ashesh Shah in 1985). Both brothers have worked for Jupiter Trading Co. which was established by their father, Mr. Arvindkumar Shah in 1962. Thus, despite being established in 2011, Ashraj Industries is backed by heritage and experience of three generations over a span of 55 years. The latest entrants to the family business is the third generation, Miti and Jash. Over the years, the family and hence the company, has developed an amazing rapport and goodwill within the industry in India. Currently, the company boasts a strong clientele in the Indian market for both, purchases of raw materials and selling finished products, and is growing steadily as it always has been." %>
 <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.4) 0%, rgba(0,36,61,0.4) 50%), url('https://res.cloudinary.com/logicisaliar/image/upload/v1535388183/Ashraj/EO.jpg');">
   <div class="banner-content">
     <h1>Ashraj Industries</h1>
@@ -7,53 +11,57 @@
     </p>
     <div class="vertical">
       <h2>
-      <%= link_to "Products", products_path, class: "btn-home" %>
+        <%= link_to "Products", products_path, class: "btn-home" %>
       </h2>
       <%= link_to "Orders", client_orders_path, class: "btn"  %>
       <h2>
-      <%= link_to "Place an Order", new_client_order_path, class: "btn-home" %>
+        <%= link_to "Place an Order", new_client_order_path, class: "btn-home" %>
       </h2>
     </div>
     <!-- <a class="btn btn-primary btn-lg">Products</a> -->
   </div>
 </div>
-<br>
-
-<div class="about row">
-  <div class="about-box col-xs-12 col-md-3">
-    <h4>
-      Activities:
-    </h4>
-    <h5>
-      We manufacture Nature Identical Flavours and Essential Oils. The essential oils
-      provided by us find wide scale applications in the cosmetics, flavouring and
-      pharmaceutical industries. This is due to various therapeutic benefits and also the distinct odour and flavour of these oils. The flavours we manufacture are used in all kinds of food and edible products like cakes, ice creams, and sweets, to name a few.
-    </h5>
-  </div>
-  <div class="about-box col-xs-12 col-md-6">
-    <h4>
-      History:
-    </h4>
-    <h5>
-      Ashraj Industries is a young and quickly growing company, established only in 2011. This is a family run business with 4 key members.
-      The proprietor, Mr. Rajesh Shah, established this company after 20 years of experience with Venus Trading Co., (established by his brother, Mr. Ashesh Shah in 1985). Both brothers have worked for Jupiter Trading Co. which was established by their father, Mr. Arvindkumar Shah in 1962. Thus, despite being established in 2011, Ashraj Industries is backed by heritage and experience of three generations over a span of 55 years. The latest entrants to the family business is the third generation, Miti and Jash. Over the years, the family and hence the company, has developed an amazing rapport and goodwill within the industry in India. Currently, the company boasts a strong clientele in the Indian market for both, purchases of raw materials and selling finished products, and is growing steadily as it always has been.
-    </h5>
-  </div>
-  <div class="about-box col-xs-12 col-md-3">
-    <h4>
-      Profile:
-    </h4>
-    <h5>
-      Currently, the company is dealing with over a 100 clients in varying volumes of work across all categories. The vision is to reliably provide consistent and affordable products with complete ease of operations. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi voluptate enim nisi aliquid nobis sint temporibus odio magnam nesciunt earum modi officiis, ullam dolore, dicta suscipit laborum recusandae. In, sit.Lorem ipsum dolor sit amet
-
-    </h5>
+<div class="pink">
+  <div class="about row">
+    <div class="about-box col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-1">
+      <h4>
+        Activities:
+      </h4>
+      <h5>
+        <strong>
+          <%= activities.truncate(l) %>
+          <%= link_to "(read more)", root_path  %>
+        </strong>
+      </h5>
+    </div>
+    <div class="about-box col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-2">
+      <h4>
+        Profile:
+      </h4>
+      <h5>
+        <strong>
+          <%= profile.truncate(l) %>
+          <%= link_to "(read more)", root_path  %>
+        </strong>
+      </h5>
+    </div>
+    <div class="about-box top-margin col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2">
+      <h4>
+        History:
+      </h4>
+      <h5>
+        <strong>
+          <%= history.truncate(l * 2) %>
+          <%= link_to "(read more)", root_path  %>
+        </strong>
+      </h5>
+    </div>
   </div>
 </div>
-<br>
-<div class="container home-contact">
-  <h3>
+<div class="home-contact">
+  <h4>
     Get in touch!
-  </h3>
+  </h4>
   <p>
     <strong>Address:</strong> 1035, Hubtown Solaris, N. S. Phadke Marg, Andheri (East), Mumbai - 400 069
     <br>
@@ -64,7 +72,5 @@
     <strong>E-mail:</strong> info@ashraj.in
   </p>
 </div>
-<br>
-<br>
 
 <!-- <div class="bottom-margin-inverse"></div> -->
