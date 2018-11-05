@@ -5,7 +5,7 @@ class Client::OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    # @companies = Company.all.sort_by &:name
+    @companies = company_order(Company.all)
   end
 
   def create
@@ -149,5 +149,26 @@ class Client::OrdersController < ApplicationController
   def transport_array(o)
     #Filter Tranport list depending on previous orders of the company and if 0, only courier companies
     return Transport.all
+  end
+
+  def company_order(companies)
+    final_array = []
+    State.all.each do |s|
+      a = []
+      a << s.name
+      final_array << a
+    end
+    companies.each do |c|
+      if c.kind == 0
+      else
+        s = []
+        s << c.addresses.where(kind: 1)[0].pincode.city.state.name
+        raise
+        a = []
+        a << c.name
+        final_array[final_array.index(s)] << a
+      end
+
+    end
   end
 end
