@@ -1,8 +1,8 @@
-<div class="card-default card-order-brief col-xs-4 col-xs-offset-1">
+<div class="card-default card-order-brief col-xs-12 col-md-4">
   <h4>Order Number - <%= order.order_num %></h4>
   <h4>Order Status - <%= order.status.capitalize %></h4>
   <h6>Invoice Amount - <%= order.invoice_amount %></h6>
-  <div class="order-brief-btn">
+  <div class="btn order-brief-btn">
     <%= link_to '<i class="fas fa-long-arrow-alt-left"></i> Return to all orders'.html_safe, client_orders_path, class: "btn-default btn-block" %>
   </div>
 </div>

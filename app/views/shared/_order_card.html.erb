@@ -3,7 +3,9 @@
   <strong><%= link_to "#{o.order_num} - #{o.status.capitalize}", client_order_path(o) %></strong>
 </h5>
 <h6>
-  <strong><%= o.company.name %></strong>
+  <strong>
+    <%= link_to "#{o.company.name}", company_path(o.company)  %>
+  </strong>
 </h6>
 <h6>
   <%= o.address.pincode.city.name %>, <%= o.address.pincode.city.state.name %>

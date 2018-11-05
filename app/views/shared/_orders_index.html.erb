@@ -1,0 +1,11 @@
+<div class="container">
+  <% if orders.nil? %>
+  <h2>Sorry, you have no previous orders to show</h2>
+  <% else %>
+  <div class="vertical">
+    <% orders.each do |o| %>
+    <%= render "/shared/order_card", items: @items, o: o %>
+    <% end %>
+    <% end %>
+  </div>
+</div>
