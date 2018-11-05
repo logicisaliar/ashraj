@@ -1,4 +1,4 @@
-<div class="card-default card-order-brief col-xs-4 col-xs-offset-1">
+<div class="card-default card-order-brief col-xs-12 col-md-4">
   <h3><%= company.name %></h3>
 
   <% city = Address.where(company: company, kind: 1)[0].pincode.city %>
