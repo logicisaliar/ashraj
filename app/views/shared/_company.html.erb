@@ -4,7 +4,7 @@
     <%= f.error_notification %>
     <%#= f.input :company_id, collection: Company.all %>
     <%= f.input :company_id,
- as: :grouped_select, collection: [['Authors', ['Jose', 'Carlos']], ['General', ['Bob', 'John']]],  group_method: :last %>
+ as: :grouped_select, collection: @companies,  group_method: :last %>
     <%= f.button :submit, "Submit", class: "btn-submit" %>
     <% end %>
   </div>
