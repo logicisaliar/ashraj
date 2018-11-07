@@ -1,3 +1,5 @@
+require 'matrix'
+
 class Client::OrdersController < ApplicationController
 
   skip_before_action :authenticate_user!
@@ -5,13 +7,16 @@ class Client::OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    @companies = company_order(Company.all.sort_by &:name)
     # @companies = Company.all.sort_by &:name
   end
 
   def create
     @order = Order.new(order_params)
     @transports = transport_array(@order)
-    unless params[:company].nil?
+    if params[:company].nil?
+      @order.company = Company.find(Company.where(name: order_params[:company_id]).ids[0])
+    else
       @order.company = Company.find(params[:company])
     end
     unless params[:transport].nil?
@@ -150,4 +155,24 @@ class Client::OrdersController < ApplicationController
     #Filter Tranport list depending on previous orders of the company and if 0, only courier companies
     return Transport.all
   end
+
+  def company_order(companies)
+    final_array = []
+    State.all.each do |s|
+      a = []
+      a << s.name
+      comp_array = []
+      companies.each do |c|
+        unless (c.kind == 0 || c.addresses.length == 0)
+          if c.addresses.where(kind: 1)[0].pincode.city.state.name == s.name
+            comp_array << c.name
+          end
+        end
+      end
+      a << comp_array
+      final_array << a
+    end
+    final_array
+  end
 end
+
