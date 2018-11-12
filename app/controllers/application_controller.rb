@@ -146,7 +146,7 @@ class ApplicationController < ActionController::Base
       i.mrp = i.product.mrp - i.packing.rebate
       i.rate = i.mrp * (100 - i.discount) / 100
       i.amount = i.total * i.rate
-      i.gst = i.amount * 0.18
+      i.gst = i.amount * i.product.gst
     end
     i
   end

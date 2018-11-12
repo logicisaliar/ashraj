@@ -1,5 +1,5 @@
 <div class="card-default card-order-brief col-xs-12 col-md-4">
-  <h3><%= company.name %></h3>
+  <h3><%= link_to "#{company.name}", company_path(company)  %></h3>
 
   <% city = Address.where(company: company, kind: 1)[0].pincode.city %>
   <h6><%= city.name %> | <%= city.state.name %></h6>

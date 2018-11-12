@@ -9,7 +9,12 @@
       <th>Amount</th>
       <th>Discount</th>
       <th>GST</th>
+
+
+      <% s = items[0].order.status %>
+      <% if s == "pending" || s == "completed" %>
       <th>Options</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -34,8 +39,10 @@
       <td><%= i.amount %></td>
       <td><%= i.discount %></td>
       <td><%= i.gst %></td>
+      <% if s == "pending" || s == "completed" %>
       <td><%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_item_path(i), order: i.order.id %> |||  <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, item_path(i), data: { confirm: "Are you sure?" }, method: :delete, order: i.order.id %>
       </td>
+      <% end %>
     </tr>
     <% end %>
   </tbody>
