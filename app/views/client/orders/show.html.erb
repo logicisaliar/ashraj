@@ -1,4 +1,4 @@
-<div class="pink">
+<div class="yellow">
   <br>
   <br>
   <div class="container order-top">
@@ -31,7 +31,9 @@
   <!-- List of Items in the Order -->
   <%= render "/shared/order_details", items: @items, order: @order %>
   <!-- Option to Add more Items -->
+  <% if @order.status == "pending" || @order.status == "completed" %>
   <%= link_to '<i class="fas fa-plus"></i> Add More Items'.html_safe, new_client_order_item_path(@order), class: "btn btn-default btn-top-m bottom-margin col-xs-10 col-md-4 col-xs-offset-1 col-md-offset-4" %>
+  <% end %>
   <br>
   <br>
   <br>
