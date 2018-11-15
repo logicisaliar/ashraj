@@ -67,7 +67,14 @@ class ApplicationController < ActionController::Base
   def calculations (o)
 
     if o.order_num.nil?
-      o.order_num = ((Date.today.year % 2000) * 10000000 ) + ((Date.today.month) * 100000) + ((Date.today.day) * 1000) + 1
+      s = 1
+      unless Order.all.length == 1
+        a = Order.all.sort_by(&:id)[-2].order_num
+        if Date.today.month == (a / 100000) % 100
+          s = (a % 1000) + 1
+        end
+      end
+      o.order_num = ((Date.today.year % 2000) * 10000000 ) + ((Date.today.month) * 100000) + ((Date.today.day) * 1000) + s
     end
     o.invoice_subtotal = 0
     o.quantity_kg = 0
