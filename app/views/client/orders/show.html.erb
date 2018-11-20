@@ -8,12 +8,13 @@
     <%= render '/shared/company_card', company: @order.company, class: "top-margin" %>
   </div>
   <!-- Change Order Status -->
-  <% if @order.status == "completed" || @order.status == "confirmed" %>
+  <% if @order.status == "pending" || @order.status == "completed" || @order.status == "confirmed" %>
   <div class="row horizontal col-xs-4 col-xs-offset-4 top-margin btn-status">
     <%= link_to "Status Up", client_order_path(@order, status_up: @order.status), class: "btn btn-success" %>
     <% end %>
     <% unless @order.status == "pending" %>
     <%= link_to "Status Down", client_order_path(@order, status_down: @order.status), class: "btn btn-danger" %>
+    <% end %>
   </div>
   <!-- Order Details for Status Up -->
   <div class="container">
@@ -25,7 +26,6 @@
     <%= render "/shared/invoiced", lines: @lines, order: @order %>
     <% elsif @order.status == "dispatched" %>
     <%= render "/shared/dispatched", lines: @lines, order: @order %>
-    <% end %>
     <% end %>
   </div>
   <!-- List of Items in the Order -->
