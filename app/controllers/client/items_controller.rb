@@ -11,9 +11,11 @@ class Client::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    @item.order_id = params[:order_id]
-    @item.discount = calculate_discount(@item)
-    @item = calculate_item(@item)
+    unless (@item.product_id.nil? || @item.packing_id.nil? || @item.quantity.nil?)
+      @item.order_id = params[:order_id]
+      @item.discount = calculate_discount(@item)
+      @item = calculate_item(@item)
+    end
     if @item.save
       @order = Order.find(@item.order_id)
       @order = calculations(@order)
