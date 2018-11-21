@@ -5,7 +5,7 @@ class Company < ApplicationRecord
   has_one :child, class_name: "Company", foreign_key: :parent_id
   has_many :addresses
   has_many :numbers
-  has_many :mails
+  has_many :emails
   has_many :orders
   validates :name, uniqueness: true
 end

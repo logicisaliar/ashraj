@@ -17,7 +17,7 @@ resources :categories, only: [:index, :new, :create]
 resources :transports, only: [:index, :new, :create]
 resources :pincodes, only: [:index, :new, :create, :edit, :update]
 resources :numbers, only: [:index, :new, :create, :edit, :update]
-resources :mails, only: [:index, :new, :create, :edit, :update]
+resources :emails, only: [:index, :new, :create, :edit, :update]
 resources :cities, only: [:index, :new, :create]
 resources :harmonics, only: [:index, :new, :create]
 resources :products

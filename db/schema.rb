@@ -64,6 +64,15 @@ ActiveRecord::Schema.define(version: 2018_10_15_092454) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "emails", force: :cascade do |t|
+    t.string "eadd"
+    t.integer "primary"
+    t.bigint "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_emails_on_company_id"
+  end
+
   create_table "harmonics", force: :cascade do |t|
     t.integer "hsn"
     t.text "description"
@@ -87,15 +96,6 @@ ActiveRecord::Schema.define(version: 2018_10_15_092454) do
     t.index ["order_id"], name: "index_items_on_order_id"
     t.index ["packing_id"], name: "index_items_on_packing_id"
     t.index ["product_id"], name: "index_items_on_product_id"
-  end
-
-  create_table "mails", force: :cascade do |t|
-    t.string "eadd"
-    t.integer "primary"
-    t.bigint "company_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["company_id"], name: "index_mails_on_company_id"
   end
 
   create_table "numbers", force: :cascade do |t|
@@ -240,10 +240,10 @@ ActiveRecord::Schema.define(version: 2018_10_15_092454) do
   add_foreign_key "addresses", "companies"
   add_foreign_key "addresses", "pincodes"
   add_foreign_key "cities", "states"
+  add_foreign_key "emails", "companies"
   add_foreign_key "items", "orders"
   add_foreign_key "items", "packings"
   add_foreign_key "items", "products"
-  add_foreign_key "mails", "companies"
   add_foreign_key "numbers", "companies"
   add_foreign_key "orders", "addresses"
   add_foreign_key "orders", "companies"

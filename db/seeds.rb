@@ -177,15 +177,15 @@ end
 puts "Numbers created"
 i += 1
 
-puts "Creating Mails - #{i}"
+puts "Creating Emails - #{i}"
 csv_text = File.read(Rails.root.join('lib', 'seeds', "mail.csv"))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 csv.each do |row|
-  t = Mail.new
+  t = Email.new
   t.eadd = row['eadd']
   t.primary = row['primary']
   t.company_id = row['company_id']
   t.save!
 end
-puts "Mails created"
+puts "Emails created"
 i += 1
