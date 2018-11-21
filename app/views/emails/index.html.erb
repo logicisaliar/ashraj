@@ -5,9 +5,9 @@
     <%= c.name %>
   </h3>
   <h4>
-    <% @mails.each do |m| %>
+    <% @emails.each do |m| %>
     <%= m.eadd %>
-    <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_mail_path(m, company: c) %>
+    <%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_email_path(m, company: c) %>
     <% end %>
   </h4>
   <%= link_to "Go back", company_path(c) %>

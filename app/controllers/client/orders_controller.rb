@@ -43,7 +43,7 @@ class Client::OrdersController < ApplicationController
     status_down = params[:status_down]
     @order = set_status(@order)
     @number = truncate_num(Number.where(company: @order.company).to_a, 30)
-    @mail = truncate_mail(Mail.where(company: @order.company).to_a, 30)
+    @email = truncate_mail(Email.where(company: @order.company).to_a, 30)
     status = STATUS.index(@order.status) + 1
     unless status_down.nil?
       @order.status = STATUS[STATUS.index(status_down) - 1]
