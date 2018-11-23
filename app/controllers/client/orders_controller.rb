@@ -113,6 +113,12 @@ class Client::OrdersController < ApplicationController
           o.status = "packed"
           if [o.invoiced_date, o.invoice_number].all?
             o.status = "invoiced"
+            if o.company.kind == 3
+              b = Brokerage.new
+              b.order = o
+              b.brokerage_date = o.invoiced_date
+              b = calculate_brokerage(b)
+            end
             if [o.dispatched_date, o.lr].all?
               o.status = "dispatched"
               if [o.released_date].all?
@@ -173,6 +179,14 @@ class Client::OrdersController < ApplicationController
       final_array << a
     end
     final_array
+  end
+
+  def calculate_brokerage(b)
+    amount = 0
+    raise
+    b.order.items.each do |i|
+      amount += (i.product.discount - i.discount) * i.quantity * i.mrp
+    end
   end
 end
 

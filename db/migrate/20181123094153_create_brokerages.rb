@@ -5,6 +5,7 @@ class CreateBrokerages < ActiveRecord::Migration[5.2]
       t.float :tds
       t.float :commission
       t.text :narration
+      t.date :brokerage_date
 
       t.timestamps
     end

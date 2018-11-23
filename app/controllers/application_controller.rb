@@ -115,9 +115,9 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    if o.company.kind == 3
-      o.brokerage = calculate_brokerage(o)
-    end
+    # if o.company.kind == 3
+    #   o.brokerage = calculate_brokerage(o)
+    # end
     o
   end
 
