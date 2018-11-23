@@ -1,18 +1,18 @@
 require 'test_helper'
 
-class BrokerageControllerTest < ActionDispatch::IntegrationTest
+class BrokeragesControllerTest < ActionDispatch::IntegrationTest
   test "should get edit" do
-    get brokerage_edit_url
+    get brokerages_edit_url
     assert_response :success
   end
 
   test "should get index" do
-    get brokerage_index_url
+    get brokerages_index_url
     assert_response :success
   end
 
   test "should get show" do
-    get brokerage_show_url
+    get brokerages_show_url
     assert_response :success
   end
 

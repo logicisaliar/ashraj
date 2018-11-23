@@ -1,4 +1,4 @@
-class BrokerageController < ApplicationController
+class BrokeragesController < ApplicationController
   def edit
   end
 

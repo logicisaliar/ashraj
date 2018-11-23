@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'brokerages/edit'
+  get 'brokerages/index'
+  get 'brokerages/show'
   get 'brokerage/edit'
   get 'brokerage/index'
   get 'brokerage/show'
