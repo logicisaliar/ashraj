@@ -1,5 +1,3 @@
-require 'matrix'
-
 class Client::OrdersController < ApplicationController
 
   skip_before_action :authenticate_user!
@@ -183,10 +181,17 @@ class Client::OrdersController < ApplicationController
 
   def calculate_brokerage(b)
     amount = 0
-    raise
     b.order.items.each do |i|
-      amount += (i.product.discount - i.discount) * i.quantity * i.mrp
+      amount += ((i.product.discount - i.discount) * i.quantity * i.mrp) / 100
     end
+    b.amount = amount
+    b = calculate_tds(b)
+  b
   end
+
+  def calculate_tds(b)
+    raise
+  end
+
 end
 

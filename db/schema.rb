@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2018_11_23_094153) do
     t.bigint "order_id"
     t.float "tds"
     t.float "commission"
+    t.float "amount"
     t.text "narration"
     t.date "brokerage_date"
     t.datetime "created_at", null: false
