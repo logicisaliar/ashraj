@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2018_11_23_094153) do
 
   create_table "brokerages", force: :cascade do |t|
     t.bigint "order_id"
+    t.bigint "company_id"
     t.float "tds"
     t.float "commission"
     t.float "amount"
@@ -35,6 +36,7 @@ ActiveRecord::Schema.define(version: 2018_11_23_094153) do
     t.date "brokerage_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_brokerages_on_company_id"
     t.index ["order_id"], name: "index_brokerages_on_order_id"
   end
 
@@ -251,6 +253,7 @@ ActiveRecord::Schema.define(version: 2018_11_23_094153) do
 
   add_foreign_key "addresses", "companies"
   add_foreign_key "addresses", "pincodes"
+  add_foreign_key "brokerages", "companies"
   add_foreign_key "brokerages", "orders"
   add_foreign_key "cities", "states"
   add_foreign_key "emails", "companies"
