@@ -112,8 +112,12 @@ class Client::OrdersController < ApplicationController
           if [o.invoiced_date, o.invoice_number].all?
             o.status = "invoiced"
             if o.company.kind == 3
-              b = Brokerage.new
-              b.order = o
+              if o.brokerage.nil?
+                b = Brokerage.new
+                b.order = o
+              else
+                b = Brokerage.find_by(order_id: o.id)
+              end
               b.brokerage_date = o.invoiced_date
               b = calculate_brokerage(b)
             end
@@ -182,7 +186,7 @@ class Client::OrdersController < ApplicationController
   def calculate_brokerage(b)
     amount = 0
     b.order.items.each do |i|
-      amount += ((i.product.discount - i.discount) * i.quantity * i.mrp) / 100
+      amount += ((i.product.discount - i.discount) * i.total * i.mrp) / 100
     end
     b.amount = amount
     b.brokerage_date = b.order.invoiced_date
@@ -210,7 +214,6 @@ class Client::OrdersController < ApplicationController
       b.narration = "Blah"
     end
     b.commission = b.amount - b.tds
-    raise
   end
 
 end
