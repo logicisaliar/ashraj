@@ -1,5 +1,3 @@
-require 'matrix'
-
 class Client::OrdersController < ApplicationController
 
   skip_before_action :authenticate_user!
@@ -7,15 +5,15 @@ class Client::OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    @companies = company_order(Company.all.sort_by &:name)
-    # @companies = Company.all.sort_by &:name
+    # @companies = company_order(Company.all.sort_by &:name)
+    @companies = Company.all.sort_by &:name
   end
 
   def create
     @order = Order.new(order_params)
     @transports = transport_array(@order)
     if params[:company].nil?
-      @order.company = Company.find(Company.where(name: order_params[:company_id]).ids[0])
+      @order.company = Company.find(Company.where(id: order_params[:company_id]).ids[0])
     else
       @order.company = Company.find(params[:company])
     end
@@ -113,6 +111,16 @@ class Client::OrdersController < ApplicationController
           o.status = "packed"
           if [o.invoiced_date, o.invoice_number].all?
             o.status = "invoiced"
+            if o.company.kind == 3
+              if o.brokerage.nil?
+                b = Brokerage.new
+                b.order = o
+              else
+                b = Brokerage.find_by(order_id: o.id)
+              end
+              b.brokerage_date = o.invoiced_date
+              b = calculate_brokerage(b)
+            end
             if [o.dispatched_date, o.lr].all?
               o.status = "dispatched"
               if [o.released_date].all?
@@ -174,5 +182,39 @@ class Client::OrdersController < ApplicationController
     end
     final_array
   end
+
+  def calculate_brokerage(b)
+    amount = 0
+    b.order.items.each do |i|
+      amount += ((i.product.discount - i.discount) * i.total * i.mrp) / 100
+    end
+    b.amount = amount
+    b.brokerage_date = b.order.invoiced_date
+    b.company_id = b.order.company.parent.id
+    b.save
+    b = calculate_tds(b)
+    b
+  end
+
+  def calculate_tds(b)
+    brokerages = Brokerage.where(company_id: b.company.id)
+    amount = 0
+    brokerages.each do |brokerage|
+      amount += brokerage.amount if current_financial_year?(brokerage.brokerage_date)
+    end
+    b.company.pan_number.nil? ? tds_per = 0.2 : tds_per = 0.05
+    if amount > 15000 && amount - brokerages[-1].amount <= 15000
+      b.tds = amount * tds_per
+      b.narration = "First TDS"
+    elsif amount > 15000
+      b.tds = b.amount * tds_per
+      b.narration = "TDS, not first"
+    else
+      b.tds = 0
+      b.narration = "Blah"
+    end
+    b.commission = b.amount - b.tds
+  end
+
 end
 

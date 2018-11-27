@@ -115,9 +115,9 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    if o.company.kind == 3
-      o.brokerage = calculate_brokerage(o)
-    end
+    # if o.company.kind == 3
+    #   o.brokerage = calculate_brokerage(o)
+    # end
     o
   end
 
@@ -182,7 +182,11 @@ class ApplicationController < ActionController::Base
         return false
       end
     elsif d.year == t.year + 1
-      raise
+      if d.month <= 3
+        return true
+      else
+        false
+      end
     else
       return false
     end

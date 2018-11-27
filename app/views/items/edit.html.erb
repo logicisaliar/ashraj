@@ -5,6 +5,7 @@
     <%= f.input :product_id, collection: @products, label_method: :second, value_method: :first  %>
     <%= f.input :packing_id, collection: @packings, label_method: :second, value_method: :first  %>
     <%= f.input :quantity %>
+    <%= f.input :discount %>
     <div class="hidden">
       <%= f.input_field "Pass Params", name: "order_id", value: @item.order.id %>
     </div>

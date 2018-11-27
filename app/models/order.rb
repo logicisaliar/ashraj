@@ -1,6 +1,7 @@
 class Order < ApplicationRecord
   belongs_to :company
   has_many :items
+  has_one :brokerage
   belongs_to :transport
   belongs_to :user, optional: true
   belongs_to :address
