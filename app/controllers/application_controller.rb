@@ -87,14 +87,15 @@ class ApplicationController < ActionController::Base
     gst = 0
     o.items.each do |i|
       if i.packing.sample
-        if i.product.unit = "Ltr"
+        if i.product.unit == "Ltr"
           o.sample_l += i.total
         else
           o.sample_kg += i.total
         end
       else
-        if i.product.unit = "Ltr"
+        if i.product.unit == "Ltr"
           o.quantity_l += i.total
+          raise
         else
           o.quantity_kg += i.total
         end
