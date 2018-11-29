@@ -87,20 +87,21 @@ class ApplicationController < ActionController::Base
     gst = 0
     o.items.each do |i|
       if i.packing.sample
-        if i.product.unit = "Ltr"
+        if i.product.unit == "Ltr"
           o.sample_l += i.total
         else
           o.sample_kg += i.total
         end
       else
-        if i.product.unit = "Ltr"
+        if i.product.unit == "Ltr"
           o.quantity_l += i.total
         else
           o.quantity_kg += i.total
         end
         gst += i.product.gst * i.rate * i.total / 100
         o.invoice_subtotal += i.rate * i.total
-        o.invoice_amount = o.invoice_subtotal + gst
+        o.invoice_subtotal = o.invoice_subtotal.round(2)
+        o.invoice_amount = (o.invoice_subtotal + gst.round(2)).round
       end
       unless o.courier_charge == 0
         gst += o.courier_charge * 0.18
@@ -108,10 +109,10 @@ class ApplicationController < ActionController::Base
       address_id = o.company.addresses.where(kind: 1).ids[0]
       address = Address.find(address_id)
       if address.pincode.city.state.code == 27
-        o.cgst = gst / 2
-        o.sgst = gst / 2
+        o.cgst = ( gst / 2).round(2)
+        o.sgst = ( gst / 2).round(2)
       else
-        o.igst = gst
+        o.igst = gst.round(2)
       end
     end
 

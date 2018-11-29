@@ -5,9 +5,9 @@
       <th>Packing</th>
       <th>Total</th>
       <th>MRP</th>
+      <th>Discount</th>
       <th>Rate</th>
       <th>Amount</th>
-      <th>Discount</th>
       <th>GST</th>
 
       <% if items.length == 0 %>
@@ -23,25 +23,16 @@
   <tbody>
     <% items.each do |i| %>
     <tr>
-      <% product = i.product %>
-      <% packing = i.packing %>
-      <% mrp = product.mrp - packing.rebate %>
-      <% rate = mrp * (100 - product.discount) / 100 %>
-      <% product_name = product.name %>
-      <% quantity = i.quantity %>
-      <% pack_size = packing.pack_size %>
-      <% total = quantity * pack_size %>
-      <% amount = rate * total %>
-      <% discount = product.discount %>
-      <% product_gst = product.gst * amount / 100 %>
+      <% product_name = i.product.name %>
+      <% pack_size = i.packing.pack_size %>
       <td><%= product_name %></td>
       <td><%= i.quantity %> x <%= pack_size %></td>
-      <td><%= i.total %> <%= product.unit %></td>
+      <td><%= i.total %> <%= i.product.unit %></td>
       <td><%= i.mrp %></td>
+      <td><%= i.discount %></td>
       <td><%= i.rate %></td>
       <td><%= i.amount %></td>
-      <td><%= i.discount %></td>
-      <td><%= i.gst %></td>
+      <td><%= i.gst / 100 %></td>
       <% if s == "pending" || s == "completed" %>
       <td><%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_item_path(i), order: i.order.id %> |||  <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, item_path(i, order: i.order.id), data: { confirm: "Are you sure?" }, method: :delete %>
       </td>

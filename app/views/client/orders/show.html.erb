@@ -12,7 +12,12 @@
   <div class="row horizontal col-xs-4 col-xs-offset-4 top-margin btn-status">
     <%= link_to "Status Up", client_order_path(@order, status_up: @order.status), class: "btn btn-success" %>
     <% end %>
-    <% unless @order.status == "pending" %>
+    <% if @order.released_date.nil? %>
+    <% rd = 0 %>
+    <% else %>
+    <% rd = @order.released_date %>
+    <% end %>
+    <% unless @order.status == "pending" || Date.today > rd + 3 %>
     <%= link_to "Status Down", client_order_path(@order, status_down: @order.status), class: "btn btn-danger" %>
     <% end %>
   </div>

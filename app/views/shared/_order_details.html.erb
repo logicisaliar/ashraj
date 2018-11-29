@@ -1,3 +1,10 @@
 <div class="container">
   <%= render '/shared/order_list', items: items %>
+  <% unless order.class == Order %>
+  <% order = Order.find(order) %>
+  <% end %>
+  <%= render '/shared/totals_card', title: "Invoice Amount", value: order.invoice_amount %>
+  <%= render '/shared/totals_card', title: "Invoice GST", value: order.igst + order.sgst + order.cgst %>
+  <%= render '/shared/totals_card', title: "Order Quantity", value: "#{order.quantity_l} Liters and #{order.quantity_kg} Kgs" %>
+  <%= render '/shared/totals_card', title: "Sample Quantity", value: "#{order.sample_l} Liters and #{order.sample_kg} Kgs" %>
 </div>
