@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'outerpackings/index'
+  get 'outerpackings/new'
+  get 'outerpackings/edit'
   get 'brokerages/edit'
   get 'brokerages/index'
   get 'brokerages/show'
