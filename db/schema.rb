@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_23_094153) do
+ActiveRecord::Schema.define(version: 2018_12_01_121741) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -160,6 +160,23 @@ ActiveRecord::Schema.define(version: 2018_11_23_094153) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
+  create_table "outerpackings", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "outer_id"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_outerpackings_on_order_id"
+    t.index ["outer_id"], name: "index_outerpackings_on_outer_id"
+  end
+
+  create_table "outers", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "packings", force: :cascade do |t|
     t.float "rebate"
     t.float "pack_size"
@@ -265,6 +282,8 @@ ActiveRecord::Schema.define(version: 2018_11_23_094153) do
   add_foreign_key "orders", "companies"
   add_foreign_key "orders", "transports"
   add_foreign_key "orders", "users"
+  add_foreign_key "outerpackings", "orders"
+  add_foreign_key "outerpackings", "outers"
   add_foreign_key "pincodes", "cities"
   add_foreign_key "products", "harmonics"
   add_foreign_key "products", "types"

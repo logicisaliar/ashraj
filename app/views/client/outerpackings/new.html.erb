@@ -1,0 +1,8 @@
+<%= simple_form_for @outerpacking, client_order_outerpackings_path do |f| %>
+<%= f.error_notification %>
+  <%= f.input :outer_id, collection: Outer.all %>
+  <%= f.input :quantity %>
+  <%= f.button :submit %>
+<% end %>
+
+<%= link_to "Go back", root_path %>

@@ -1,3 +1,4 @@
+<% raise %>
 <div class="yellow">
   <br>
   <br>
@@ -8,8 +9,8 @@
     <%= render '/shared/company_card', company: @order.company, class: "top-margin" %>
   </div>
   <!-- Change Order Status -->
-  <% if @order.status == "completed" || @order.status == "confirmed" %>
-  <div class="row horizontal col-xs-4 col-xs-offset-4 top-margin btn-status">
+  <% if @order.status == "completed" %>
+  <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4 form-default">
     <%= link_to "Status Up", client_order_path(@order, status_up: @order.status), class: "btn btn-success" %>
     <% end %>
     <% if @order.released_date.nil? %>
@@ -17,20 +18,22 @@
     <% else %>
     <% rd = @order.released_date %>
     <% end %>
-    <% unless @order.status == "pending" || Date.today > rd + 3 %>
+    <% unless @order.status == "pending" && Date.today > rd + 3 %>
     <%= link_to "Status Down", client_order_path(@order, status_down: @order.status), class: "btn btn-danger" %>
     <% end %>
   </div>
   <!-- Order Details for Status Up -->
   <div class="container">
     <% if @order.status == "pending" %>
-    <%= render "/shared/pending", lines: @lines, order: @order %>
+    <%= render "/shared/pending", order: @order %>
+    <% elsif @order.status == "confirmed" %>
+    <%= render "/shared/confirmed", order: @order %>
     <% elsif @order.status == "packed" %>
-    <%= render "/shared/packed", lines: @lines, order: @order %>
+    <%= render "/shared/packed", order: @order %>
     <% elsif @order.status == "invoiced" %>
-    <%= render "/shared/invoiced", lines: @lines, order: @order %>
+    <%= render "/shared/invoiced", order: @order %>
     <% elsif @order.status == "dispatched" %>
-    <%= render "/shared/dispatched", lines: @lines, order: @order %>
+    <%= render "/shared/dispatched", order: @order %>
     <% end %>
   </div>
   <!-- List of Items in the Order -->
