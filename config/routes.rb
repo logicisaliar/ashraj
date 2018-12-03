@@ -1,23 +1,20 @@
 Rails.application.routes.draw do
-  get 'outerpackings/index'
-  get 'outerpackings/new'
-  get 'outerpackings/edit'
-  get 'brokerages/edit'
-  get 'brokerages/index'
-  get 'brokerages/show'
-  get 'brokerage/edit'
-  get 'brokerage/index'
-  get 'brokerage/show'
+  namespace :client do
+    get 'outerpackings/new'
+    get 'outerpackings/index'
+  end
   devise_for :users
   root to: 'pages#home'
   get 'development', to: 'pages#development'
   namespace :client do
    resources :orders do
     resources :items, only: [:index, :new, :create]
+    resources :outerpackings, only: [:index, :new, :create]
   end
 end
 get '/client/order/get_address', to: 'client/orders#get_address'
 resources :items, only: [:show, :edit, :update, :destroy]
+resources :outerpackings, only: [:show, :edit, :update, :destroy]
 resources :types, only: [:index]
 resources :states, only: [:index]
 resources :packings, only: [:index]

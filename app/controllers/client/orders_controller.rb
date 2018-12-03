@@ -29,7 +29,7 @@ class Client::OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.all
+    @orders = Order.all.sort_by &:order_num
     @orders.each do |o|
       o = set_status(o)
     end

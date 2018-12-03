@@ -4,7 +4,7 @@
   <% order_id = params[:format] %>
 <% end %>
 <h1>Please add new Item</h1>
-<%= simple_form_for item, url: lines_path do |f| %>
+<%= simple_form_for item do |f| %>
 <%= f.error_notification %>
 <%= f.input :product_id, collection: @products, label_method: :second, value_method: :first  %>
 <%= f.input :packing_id, collection: @packings, label_method: :second, value_method: :first  %>

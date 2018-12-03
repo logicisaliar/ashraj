@@ -1,6 +1,6 @@
 <% if @order.company.addresses.length > 1 %>
   <%= render "address", order: @order %>
-<% elsif @order.lines.length == 0 %>
+<% elsif @order.items.length == 0 %>
   <%= render "client/items/form", item: Item.new %>
 <% else %>
   YOOOOOOOO
