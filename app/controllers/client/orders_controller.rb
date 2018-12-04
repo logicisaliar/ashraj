@@ -29,15 +29,7 @@ class Client::OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.where(released_date: [nil, Date.today, Date.today - 1, Date.today - 2])
-    # @orders = Order.group(:released_date)
-    # @orders = @orders.having('released_date < Date.today - 3')
-    # @orders = Order.where(released_date: [nil, Date.today - 6])
-    # @orders = Order.where('released_date IS NULL')
-    # @orders = Order.where("released_date = ? OR released_date < ?", nil, Date.today - 3).sort_by &:order_num
-    # @order = Order.where("released_date < ? OR released_date IS NULL", Date.today - 3)
-    # @orders = Order.where.not("released_date < ? OR released_date = ?", Date.today - 3, nil).sort_by &:order_num
-    # @orders = Order.where.not("released_date < ? OR released_date IS NULL", Date.today - 3).sort_by &:order_num
+    @orders = Order.where(released_date: [nil, 3.days.ago..Date.today])
     @orders.each do |o|
       o = set_status(o)
     end
