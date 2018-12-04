@@ -29,7 +29,7 @@ class Client::OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.all.sort_by &:order_num
+    @orders = Order.where(released_date: [nil, 3.days.ago..Date.today])
     @orders.each do |o|
       o = set_status(o)
     end
