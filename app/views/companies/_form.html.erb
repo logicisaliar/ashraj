@@ -1,5 +1,10 @@
 <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4 form-default">
-
+<% if @company.kind == 3 %>
+<%= simple_form_for company do |f| %>
+  <%= f.input :parent_id, collection: @traders, label: "Trader" %>
+  <%= f.button :submit, class: "btn-submit" %>
+<% end %>
+<% else %>
 <%= simple_form_for company do |f| %>
 <%= f.error_notification %>
   <%= f.input :name %>
@@ -8,5 +13,6 @@
   <%= f.input :gst_end, label: "GST (last 3 digits)", maxlength: 3, minlength: 2 %>
   <%= f.input :spl_instructions, label: "Special Instructions (if any)"%>
   <%= f.button :submit, class: "btn-submit" %>
+<% end %>
 <% end %>
 </div>
