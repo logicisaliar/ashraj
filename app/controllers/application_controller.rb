@@ -4,8 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_user!
 
-  #             0           1             2         3           4           5             6
-  STATUS = ["pending", "completed", "confirmed", "packed", "invoiced", "dispatched", "released"]
+  #             0           1             2         3           4           5             6           7
+  STATUS = ["pending", "completed", "confirmed", "packed", "invoiced", "dispatched", "released", "cancelled"]
 
   private
 
