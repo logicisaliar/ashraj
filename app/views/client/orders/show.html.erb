@@ -35,6 +35,8 @@
     <%= render "/shared/dispatched", order: @order %>
     <% end %>
   </div>
+  <!-- Order Remarks -->
+  <%= render "/shared/order_remarks", order: @order %>
   <!-- List of Items in the Order -->
   <%= render "/shared/order_details", items: @items, order: @order %>
   <!-- Option to Add more Items -->

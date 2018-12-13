@@ -4,7 +4,7 @@
   <%= f.input :salesperson, collection: ["Jash", "Miti", "Rajesh"] %>
   <%= f.input :misc_charges %>
   <%= f.input :other_taxes %>
-  <%= f.input :remark %>
+  <%= f.input :remark, input_html: {value: @order.company.spl_instructions} %>
   <!-- Only if Transport - kind is courier -->
   <%= f.input :courier_charge %>
   <div class="hidden">

@@ -6,5 +6,5 @@ class Company < ApplicationRecord
   has_many :emails
   has_many :orders
   has_many :brokerages
-  validates :name, uniqueness: true
+  validates :name, uniqueness: true, presence: true
 end
