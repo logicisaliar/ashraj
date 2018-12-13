@@ -103,35 +103,40 @@ class Client::OrdersController < ApplicationController
   end
 
   def set_status(o)
-    if [o.salesperson].all?
-      o.status = "completed"
-      if [o.confirmed_date].all?
-        o.status = "confirmed"
-        if [o.packed_date].all?
-          o.status = "packed"
-          if [o.invoiced_date, o.invoice_number].all?
-            o.status = "invoiced"
-            if o.company.kind == 3
-              if o.brokerage.nil?
-                b = Brokerage.new
-                b.order = o
-              else
-                b = Brokerage.find_by(order_id: o.id)
+    if o.cancelled?
+      return o
+      if [o.salesperson].all?
+        o.status = "completed"
+        if [o.confirmed_date].all?
+          o.status = "confirmed"
+          if [o.packed_date].all?
+            o.status = "packed"
+            if [o.invoiced_date, o.invoice_number].all?
+              o.status = "invoiced"
+              if o.company.kind == 3
+                if o.brokerage.nil?
+                  b = Brokerage.new
+                  b.order = o
+                else
+                  b = Brokerage.find_by(order_id: o.id)
+                end
+                b.brokerage_date = o.invoiced_date
+                b = calculate_brokerage(b)
               end
-              b.brokerage_date = o.invoiced_date
-              b = calculate_brokerage(b)
-            end
-            if [o.dispatched_date, o.lr].all?
-              o.status = "dispatched"
-              if [o.released_date].all?
-                o.status = "released"
+              if [o.dispatched_date, o.lr].all?
+                o.status = "dispatched"
+                if [o.released_date].all?
+                  o.status = "released"
+                end
               end
             end
           end
         end
       end
     end
-    o.completed_date = Date.today
+    if o.completed_date.nil?
+      o.completed_date = Date.today
+    end
     return o
   end
 
@@ -157,6 +162,13 @@ class Client::OrdersController < ApplicationController
     return o
   end
 
+  def order_active?(o)
+    unless (o.status == "cancelled" || o.status == "pending")
+      return true
+    else
+      return false
+    end
+  end
 
 
   def transport_array(o)
