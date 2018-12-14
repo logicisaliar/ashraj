@@ -21,6 +21,8 @@ class CompaniesController < ApplicationController
   end
 
   def edit
+    @traders = Company.where(kind: 2)
+    @company_kinds = [[1, "User"], [2, "Trader"], [3, "On Account"]]
   end
 
   def update
